@@ -1,0 +1,11 @@
+@import '../../assets/scss/color.scss';
+
+@font-face {
+    font-family: cristalistic;
+    src: url(../../assets/fonts/cristalistic.ttf) format("truetype");
+}
+
+.cristalistic{
+    font-family: cristalistic;
+    font-size: 20pt;
+}
