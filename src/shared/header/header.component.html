@@ -4,7 +4,7 @@
             <img src="/assets/pictures/logo/logo_x2.png">
        </div>
     </div>
-    <div class="col m-1">
+    <div class="col m-1 pt-1">
         <div class="row pb-2">
             <div class="col-sm-6 col-md-4 col-lg-4 col-xl-6 title">
                 Radio Sinfoni 107.8 FM 
@@ -31,36 +31,14 @@
         </div>
         
         <div class="row pt-2 ml-1 border-top">
-            <div class="col p-0">
-                <div class="lnk active">
-                    Home
+            <div class="col" *ngFor="let item of links">
+                <div class="lnk"
+                [ngClass]="{'active': this.router.url.includes(item.value)}"
+                (click)="nav(item)">
+                    {{item.name}}
                 </div>
             </div>
-            <div class="col">
-                <div class="lnk">
-                    Live-show
-                </div>
-            </div>
-            <div class="col">
-                <div class="lnk active">
-                    Videos
-                </div>
-            </div>
-            <div class="col">
-                <div class="lnk">
-                    News
-                </div>
-            </div>
-            <div class="col">
-                <div class="lnk">
-                    FAQ
-                </div>
-            </div>
-            <div class="col">
-                <div class="lnk">
-                    Contact
-                </div>
-            </div>
+
         </div>
     </div>
 </div>
@@ -94,24 +72,13 @@
     <div class="row w-100 h-100">
         <div class="col-9 d-flex align-items-center p-3">
             <ul>
-                <li class="lnk active">
-                    Home
+
+                <li class="lnk" *ngFor="let item of links"
+                [ngClass]="{'active': this.router.url.includes(item.value)}"
+                (click)="nav(item)">
+                    {{item.name}}
                 </li>
-                <li class="lnk">
-                    Live-show
-                </li>
-                <li class="lnk">
-                    Videos
-                </li>
-                <li class="lnk">
-                    News
-                </li>
-                <li class="lnk">
-                    FAQ
-                </li>
-                <li class="lnk">
-                    Contact
-                </li>
+
             </ul>
         </div>
         <div class="col-3 pt-3 pr-0 text-right">

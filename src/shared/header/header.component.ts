@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ScreenService } from 'src/services/screen.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'header',
@@ -29,12 +30,39 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 })
 
 export class HeaderComponent implements OnInit {
+  links=[
+    {
+      name: 'Home',
+      value: '/home'
+    },
+    {
+      name: 'Live Show',
+      value: '/live-show'
+    },
+    {
+      name: 'Videos',
+      value: '/videos'
+    },
+    {
+      name: 'News',
+      value: '/news'
+    },
+    {
+      name: 'FAQ',
+      value: '/faq'
+    },
+    {
+      name: 'Contact',
+      value: '/contact'
+    }
+  ]
   state: any
   
   opened= false
 
   constructor(
-    private screenSvc: ScreenService
+    private screenSvc: ScreenService,
+    public router: Router
   ) { }
 
   ngOnInit(): void {
@@ -47,5 +75,10 @@ export class HeaderComponent implements OnInit {
 
   toggle(){
     this.opened = !this.opened
+  }
+
+  nav(i){
+    this.toggle()
+    this.router.navigateByUrl(i.value)
   }
 }

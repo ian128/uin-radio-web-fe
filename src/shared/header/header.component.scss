@@ -48,7 +48,7 @@
 }
 
 .lnk:hover{
-    padding-bottom: -4px ;
+    padding-bottom: -4px;
     border-bottom: 4px solid $primary;
 }
 
@@ -66,6 +66,7 @@
         color: #FFFFFF;
         font-size: 20pt;
         li{
+            padding-top: 0;
             list-style: none;
         }
     }
