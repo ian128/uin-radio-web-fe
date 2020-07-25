@@ -4,6 +4,8 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule }   from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
+import { NewsCardComponent } from './news-card/news-card.component';
+import { VideosCardComponent } from './videos-card/videos-card.component';
 
 const core=[
     CommonModule,
@@ -13,7 +15,9 @@ const core=[
 ]
 
 const frequentlyUsedComponent=[
-    HeaderComponent
+    HeaderComponent,
+    NewsCardComponent,
+    VideosCardComponent
 ]
 
 @NgModule({

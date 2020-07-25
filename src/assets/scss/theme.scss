@@ -1,3 +1,4 @@
+@import "../fonts/font.scss";
 @import "./color.scss";
 
 .bg-green{
@@ -14,4 +15,19 @@
 
 .white{
     color: #FFFFFF;
+}
+
+.title{
+    font-family: av-nxt-bold;
+    font-size: 21px;
+    line-height: 1.1;
+}
+
+.subtitle{
+    font-family: av-nxt;
+    font-size: 12px;
+}
+
+.caption{
+    font-size: 12px;
 }

@@ -9,18 +9,20 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
   animations:[
     trigger('menu', [
       state('open', style({
-        'height': '*',
-        'opacity': '1.0'
+        'bottom': '0',
+        'opacity': '1.0',
+        'z-index':100
       })),
       state('closed', style({
-        'height': '0',
-        'opacity': '0.0'
+        'bottom': '100vh',
+        'opacity': '0.0',
+        'z-index':-10
       })),
       transition('open => closed', [
-        animate('0.3s')
+        animate('0.2s')
       ]),
       transition('closed => open', [
-        animate('0.3s')
+        animate('0.2s')
       ]),
     ]),
   ]
