@@ -1,0 +1,17 @@
+@import "./color.scss";
+
+.bg-green{
+    background-color: $primary;
+}
+
+.bg-light-gray{
+    background-color: $light-gray;
+}
+
+.capitalize{
+    text-transform: uppercase;
+}
+
+.white{
+    color: #FFFFFF;
+}
