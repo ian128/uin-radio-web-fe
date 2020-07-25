@@ -40,7 +40,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.screenSvc.prefix.subscribe((res)=>{
       console.log(res)
-      if(res < 2) this.opened=false
+      if(res >= 2) this.opened=false
       this.state=res
     })
   }

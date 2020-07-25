@@ -9,9 +9,12 @@ $theme-colors: (
   "danger": $danger
 );
 
+html{
+  overflow-x: hidden;
+}
+
 body{
   font-family: av-nxt !important;
-  overflow-x: hidden !important;
 }
 
 header{

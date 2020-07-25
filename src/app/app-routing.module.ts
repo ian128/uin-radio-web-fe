@@ -8,6 +8,10 @@ const routes: Routes = [
     loadChildren: ()=> import('./pages/home/home.module').then(m=>m.HomeModule)
   },
   {
+    path: 'live-show',
+    loadChildren: ()=> import('./pages/live-show/live-show.module').then(m=>m.LiveShowModule)
+  },
+  {
    path: '**',
    redirectTo: 'home',
    pathMatch: 'full'
