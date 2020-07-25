@@ -1,4 +1,4 @@
-<div class="row m-0 p-0">
+<div class="row m-0 p-0" *ngIf="this.state > 1; else smallNav">
     <div class="col-auto d-flex align-items-center company-logo-wrapper">
        <div class="company-logo">
             <img src="/assets/pictures/logo/logo_x2.png">
@@ -62,5 +62,61 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
+
+<ng-template #smallNav>
+    <div class="row m-0 p-0" style="position: relative;">
+        <div class="col-auto d-flex align-items-center company-logo-wrapper">
+           <div class="company-logo">
+                <img src="/assets/pictures/logo/logo_x2.png">
+           </div>
+        </div>
+        <div class="col  mr-3">
+            <div class="row w-100 p-3">
+                <div class="col-10 p-2 title align-self-center">
+                    Radio Sinfoni 107.8 FM 
+                    UIN Mataram
+                </div>
+
+                <div class="col-2 pr-0 text-right">
+                    <button class="btn btn-primary" (click)="toggle()">
+                        Menu
+                    </button>
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<div class="menu-container" [@menu]="opened? 'open': 'closed'" [hidden]="this.state > 1">
+    <div class="row w-100 h-100">
+        <div class="col-auto d-flex align-items-center p-3">
+            <ul>
+                <li class="lnk active">
+                    Home
+                </li>
+                <li class="lnk">
+                    Live-show
+                </li>
+                <li class="lnk">
+                    Videos
+                </li>
+                <li class="lnk">
+                    News
+                </li>
+                <li class="lnk">
+                    FAQ
+                </li>
+                <li class="lnk">
+                    Contact
+                </li>
+            </ul>
+        </div>
+        <div class="col p-3 text-right">
+            <button class="btn btn-primary" (click)="toggle()">Close</button>
+        </div>
+
     </div>
 </div>

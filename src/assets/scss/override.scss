@@ -18,3 +18,8 @@ h6{ margin: 2pt 2pt 2pt 2pt !important; font-size: 12px; }
 .text-primary{
     color: $primary !important;
 }
+
+.carousel-control-prev,.carousel-control-next{
+    width: 30pt !important;
+    background-color: #000000A0 !important;
+}

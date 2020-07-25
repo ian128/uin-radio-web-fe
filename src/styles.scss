@@ -11,7 +11,10 @@ $theme-colors: (
 
 body{
   font-family: av-nxt !important;
-  overflow-x: hidden;
+  overflow-x: hidden !important;
 }
 
+header{
+  width: 100% !important;
+}
 @import "node_modules/bootstrap/scss/bootstrap";

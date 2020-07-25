@@ -43,5 +43,32 @@
 }
 
 .lnk.active{
+    padding-bottom: -4px ;
     border-bottom: 4px solid $primary;
+}
+
+.lnk:hover{
+    padding-bottom: -4px ;
+    border-bottom: 4px solid $primary;
+}
+
+.menu-container{
+    z-index: 100;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top:0;
+    left: 0;
+    padding: 0;
+    background-color: #000000A0 !important;
+    overflow: hidden;
+
+    ul{
+        margin: auto;
+        color: #FFFFFF;
+        font-size: 20pt;
+        li{
+            list-style: none;
+        }
+    }
 }
