@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 import { NewsCardComponent } from './news-card/news-card.component';
 import { VideosCardComponent } from './videos-card/videos-card.component';
+import { FooterComponent } from './footer/footer.component';
 
 const core=[
     CommonModule,
@@ -17,7 +18,8 @@ const core=[
 const frequentlyUsedComponent=[
     HeaderComponent,
     NewsCardComponent,
-    VideosCardComponent
+    VideosCardComponent,
+    FooterComponent
 ]
 
 @NgModule({
