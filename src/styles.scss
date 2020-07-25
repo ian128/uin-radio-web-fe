@@ -1,10 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
 @import './assets/scss/color.scss';
 @import './assets/scss/override.scss';
+@import './assets/fonts/font.scss';
 
 $theme-colors: (
   "primary": $primary,
   "danger": $danger
 );
+
+body{
+  font-family: av-nxt !important;
+}
+
+.bold{
+  font-family: av-nxt-bold !important;
+}
+
+.demibold{
+  font-family: av-nxt-demi !important;
+}
 
 @import "node_modules/bootstrap/scss/bootstrap";

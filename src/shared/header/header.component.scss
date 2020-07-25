@@ -7,5 +7,41 @@
 
 .cristalistic{
     font-family: cristalistic;
-    font-size: 20pt;
+    font-size: 32px;
+}
+
+.company-logo-wrapper{
+    background-color: $primary-accent;
+    min-height: 85pt;
+    width: 85pt;
+    padding: 5pt 5pt 5pt 5pt;
+
+    .company-logo{
+        margin: auto;
+        height: 75pt;
+        width: 75pt;
+        img{
+            height: 100%;
+            width: 100%;
+        }
+    }
+}
+
+
+.title{
+    text-transform: uppercase;
+    font-family: av-nxt-demi;
+    font-size: 22px;
+}
+
+.lnk{
+    padding-left: 4pt;
+    padding-right: 4pt;
+    cursor: pointer;
+    font-family: av-nxt-bold;
+    width: fit-content;
+}
+
+.lnk.active{
+    border-bottom: 4px solid $primary;
 }
