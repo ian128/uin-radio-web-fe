@@ -10,20 +10,19 @@ import { Router } from '@angular/router';
   animations:[
     trigger('menu', [
       state('open', style({
-        'bottom': '0',
         'opacity': '1.0',
-        'z-index':100
+        'z-index':100,
+        'backdrop-filter': 'blur(4px)'
       })),
       state('closed', style({
-        'bottom': '100vh',
         'opacity': '0.0',
-        'z-index':-10
+        'z-index':-2
       })),
       transition('open => closed', [
-        animate('0.2s')
+        animate('0.3s')
       ]),
       transition('closed => open', [
-        animate('0.2s')
+        animate('0.3s')
       ]),
     ]),
   ]
@@ -59,6 +58,7 @@ export class HeaderComponent implements OnInit {
   state: any
   
   opened= false
+  isSticky: boolean
 
   constructor(
     private screenSvc: ScreenService,
@@ -71,6 +71,20 @@ export class HeaderComponent implements OnInit {
       if(res >= 2) this.opened=false
       this.state=res
     })
+
+    window.onscroll = ()=>{
+      let navbar = document.querySelector("header")
+      if(navbar){
+       
+        let params=navbar.getBoundingClientRect()
+        if (window.pageYOffset > params.height*1.1) {
+          this.isSticky=true
+        } else {
+          this.isSticky=false
+        }
+      }
+    }  
+
   }
 
   toggle(){
