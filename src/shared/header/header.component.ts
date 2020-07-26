@@ -18,7 +18,6 @@ import { Router } from '@angular/router';
         'opacity': '0.0',
         'z-index':-2,
         'backdrop-filter': 'blur(0px)',
-
       })),
       transition('open => closed', [
         animate('0.2s')

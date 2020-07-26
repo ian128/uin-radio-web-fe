@@ -27,6 +27,8 @@ h6{ margin: 2pt 2pt 2pt 2pt !important; font-size: 12px; }
 
 .modal{
     overflow: hidden;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
 }
 
 .modal-content{
