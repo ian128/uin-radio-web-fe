@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { RegisterComponent } from './pages/register/register.component';
 
 
 const routes: Routes = [
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: 'contact',
     loadChildren: ()=> import('./pages/contact/contact.module').then(m=>m.ContactModule)
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
   },
   {
    path: '**',

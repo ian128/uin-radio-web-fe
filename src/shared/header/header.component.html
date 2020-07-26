@@ -1,3 +1,21 @@
+<button type="button" #loginbtn class="btn btn-primary" hidden data-toggle="modal" data-target="#loginModal"
+></button>
+
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog"  aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h6 class="capitalize bold">login</h6>
+                <input type="email" class="form-control" placeholder="Email address">
+                <input type="password" class="form-control" placeholder="Password">
+                <button class="btn btn-primary btn-block">Login</button>
+                <div class="caption text-center">Not registered? <a routerLink="/register"
+                data-dismiss="modal">Create an account </a></div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="row" *ngIf="this.state > 1; else smallNav">
     <div class="col-auto d-flex align-items-center company-logo-wrapper">
        <div class="company-logo">
@@ -10,7 +28,7 @@
                 Radio Sinfoni 107.8 FM 
                 UIN Mataram
             </div>
-            <div class="col-sm-6 col-md-5 col-lg-5 col-xl-4 cristalistic">
+            <div class="col-sm-6 col-md-5 col-lg-5 col-xl-4 cristalistic" style="pointer-events: none;">
                The Voice of Campus
             </div>
             <div class="col-sm-12 col-md-3 col-lg-3 col-xl-2 pl-0">
@@ -20,10 +38,12 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col bold text-left">
+                    <div class="col bold text-left" style="cursor: pointer;"
+                    (click)="loginbtn.click()">
                         Log In
                     </div>
-                    <div class="col-auto bold text-right">
+                    <div class="col-auto bold text-right"
+                    routerLink="/register"  style="cursor: pointer;">
                         Sign Up
                     </div>
                 </div>
@@ -79,17 +99,19 @@
                     {{item.name}}
                 </li>
 
-                <li class="lnk mt-4">
+                <li class="lnk mt-4" routerLink="/register"
+                (click)="opened=false">
                     Sign Up
                 </li>
-                <li class="lnk">
+                <li class="lnk"
+                (click)="loginbtn.click(); opened=false ">
                     Login
                 </li>
             </ul> 
     
         </div>
         
-        <div class="col-3 pt-3 pr-0 text-right">
+        <div class="col-3 pt-3 pr-3 text-right">
             <button class="btn btn-primary" (click)="toggle()">Close</button>
         </div>
 

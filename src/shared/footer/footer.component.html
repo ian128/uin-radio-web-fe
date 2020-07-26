@@ -14,13 +14,13 @@
                     Radio Sinfoni 107.8 FM 
                     UIN Mataram
                 </div>
-                <div class="cristalistic white">
+                <div class="cristalistic white" style="pointer-events: none;">
                     The Voice of Campus
                 </div>
             </div>
         </div>
         <div class="row pl-2">
-            <div class="col-6 bold white" *ngFor="let item of links">
+            <div class="col-6 bold white" style="cursor: pointer;" *ngFor="let item of links" [routerLink]="item.value">
                 {{item.name}}
             </div>
         </div>
