@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  base_API: 'http://developergadogado.xyz/mantapp/index.php'
 };

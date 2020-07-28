@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ScreenService } from 'src/services/screen.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Router } from '@angular/router';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthService } from 'src/services/auth.service';
 
 @Component({
   selector: 'header',
@@ -63,8 +65,18 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private screenSvc: ScreenService,
-    public router: Router
+    public router: Router,
+    private authSvc: AuthService
   ) { }
+
+  loginForm = new FormGroup({
+    email: new FormControl(null, {
+      validators: [Validators.required]
+    }),
+    password: new FormControl(null,{
+      validators: [Validators.required]
+    }),
+  })
 
   ngOnInit(): void {
     this.screenSvc.prefix.subscribe((res)=>{
@@ -95,5 +107,16 @@ export class HeaderComponent implements OnInit {
   nav(i){
     this.toggle()
     this.router.navigateByUrl(i.value)
+  }
+
+  login(){
+    this.authSvc.login(this.loginForm.value).subscribe(
+      r =>{
+        console.log(r)
+      },
+      err => {
+        console.log(err)
+      }
+    )
   }
 }

@@ -12,12 +12,12 @@
     </div>
     <div class="
     col-sm-12 col-md-12 col-lg-6 col-xl-6 pt-2 pb-2 pl-3 pr-3">
-        <div class="card w-100 pl-4 pr-4 pt-3 pb-3">
+        <form [formGroup]="registerForm" class="card w-100 pl-4 pr-4 pt-3 pb-3">
             <h5 class="capitalize bold">register</h5>
-            <input class="form-control" placeholder="Full Name">
-            <input class="form-control" type="email" placeholder="Email Address">
-            <input class="form-control" type="password" placeholder="Password">
-            <input class="form-control" type="password" placeholder="Retype Password">
+            <input class="form-control" formControlName="name" placeholder="Full Name">
+            <input class="form-control" formControlName="email" type="email" placeholder="Email Address">
+            <input class="form-control" formControlName="password" type="password" placeholder="Password">
+            <input class="form-control" formControlName="password" type="password" placeholder="Retype Password">
             <div class="form-group">
                 <h6 class="text-primary bold">Gender</h6>
                 <div class="custom-control custom-radio custom-control-inline">
@@ -29,19 +29,21 @@
                     <label class="form-check-label" for="female">Female</label>
                 </div>
             </div>
-            <h6 class="text-primary bold">Gender</h6>
+            <h6 class="text-primary bold">Birth Date</h6>
             <div class="form-inline">
                 <input class="form-control mr-2" type="number" placeholder="Year" style="width: 144pt;">
                 <input class="form-control mr-2" type="number"  placeholder="Month" style="width: 72pt;">
-                <input class="form-control" type="number"  placeholder="Date" style="width: 72pt;">
+                <input class="form-control" type="number" placeholder="Date" style="width: 72pt;">
             </div>
-            <input class="form-control" type="password" placeholder="Mobile Phone">
+            <input class="form-control" type="text" formControlName="phone" placeholder="Mobile Phone">
             <div class="custom-control custom-checkbox mb-1">
-                <input type="checkbox" class="custom-control-input" id="customCheck1">
+                <input type="checkbox" class="custom-control-input" id="customCheck1"
+                formControlName="agree">
                 <label class="custom-control-label" for="customCheck1">I agree to <a>terms and service</a></label>
             </div>
             <textarea class="form-control" placeholder="Your message here.."></textarea>
-            <button class="mt-2 btn btn-primary btn-block">Send</button>
-        </div>
+            <button class="mt-2 btn btn-primary btn-block" [disabled]="!registerForm.valid"
+            (click)="register()">Send</button>
+        </form>
     </div>
 </div>

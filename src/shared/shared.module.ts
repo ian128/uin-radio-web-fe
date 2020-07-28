@@ -7,12 +7,14 @@ import { HeaderComponent } from './header/header.component';
 import { NewsCardComponent } from './news-card/news-card.component';
 import { VideosCardComponent } from './videos-card/videos-card.component';
 import { FooterComponent } from './footer/footer.component';
+import { HttpClientModule } from '@angular/common/http';
 
 const core=[
     CommonModule,
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
 ]
 
 const frequentlyUsedComponent=[
