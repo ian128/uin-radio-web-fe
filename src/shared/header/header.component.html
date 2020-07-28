@@ -88,7 +88,7 @@
     </div>
 </ng-template>
 
-<div class="menu-container" [@menu]="opened? 'open': 'closed'" [hidden]="this.state > 1">
+<div class="menu-container" style="backdrop-filter: blur(2px)" [@menu]="opened? 'open': 'closed'" [hidden]="this.state > 1">
     <div class="row w-100 h-100">
         <div class="col-9 d-flex align-items-center p-3">
             <ul>

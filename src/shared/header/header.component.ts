@@ -12,12 +12,12 @@ import { Router } from '@angular/router';
       state('open', style({
         'opacity': '1.0',
         'z-index':100,
-        'backdrop-filter': 'blur(4px)',
+       
       })),
       state('closed', style({
         'opacity': '0.0',
         'z-index':-2,
-        'backdrop-filter': 'blur(0px)',
+      
       })),
       transition('open => closed', [
         animate('0.2s')
