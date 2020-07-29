@@ -70,10 +70,10 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   loginForm = new FormGroup({
-    email: new FormControl(null, {
+    email: new FormControl("admin@admin.com", {
       validators: [Validators.required]
     }),
-    password: new FormControl(null,{
+    password: new FormControl("123456",{
       validators: [Validators.required]
     }),
   })

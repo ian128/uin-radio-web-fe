@@ -12,10 +12,7 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor(
   ) {}
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.info("Intercepting http request...")
-    request = request.clone({
-      setHeaders: {}
-    });
+    request = request.clone();
     return next.handle(request);
   }
 }

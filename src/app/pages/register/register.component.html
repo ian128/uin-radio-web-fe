@@ -21,19 +21,19 @@
             <div class="form-group">
                 <h6 class="text-primary bold">Gender</h6>
                 <div class="custom-control custom-radio custom-control-inline">
-                    <input class="form-check-input" type="radio" name="gender" id="male" value="male">
+                    <input class="form-check-input" formControlName="gender"  type="radio" name="gender" id="male" value="M">
                     <label class="form-check-label" for="male">Male</label>
                 </div>
                 <div class="custom-control custom-radio custom-control-inline">
-                    <input class="form-check-input" type="radio" name="gender" id="female" value="female">
+                    <input class="form-check-input" formControlName="gender" type="radio" name="gender" id="female" value="F">
                     <label class="form-check-label" for="female">Female</label>
                 </div>
             </div>
             <h6 class="text-primary bold">Birth Date</h6>
-            <div class="form-inline">
-                <input class="form-control mr-2" type="number" placeholder="Year" style="width: 144pt;">
-                <input class="form-control mr-2" type="number"  placeholder="Month" style="width: 72pt;">
-                <input class="form-control" type="number" placeholder="Date" style="width: 72pt;">
+            <div class="form-inline" formGroupName="birthdate">
+                <input class="form-control mr-2" type="number" formControlName="yyyy" placeholder="Year" style="width: 144pt;">
+                <input class="form-control mr-2" type="number" formControlName="mm"  placeholder="Month" style="width: 72pt;">
+                <input class="form-control" type="number"  formControlName="dd" placeholder="Date" style="width: 72pt;">
             </div>
             <input class="form-control" type="text" formControlName="phone" placeholder="Mobile Phone">
             <div class="custom-control custom-checkbox mb-1">
