@@ -14,9 +14,7 @@ export class TokenInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     console.info("Intercepting http request...")
     request = request.clone({
-      setHeaders: {
-        'Access-Control-Allow-Origin': '*',
-      }
+      setHeaders: {}
     });
     return next.handle(request);
   }
