@@ -15,6 +15,7 @@ export class TokenInterceptor implements HttpInterceptor {
     console.info("Intercepting http request...")
     request = request.clone({
       setHeaders: {
+        'Access-Control-Allow-Origin': '*',
       }
     });
     return next.handle(request);
