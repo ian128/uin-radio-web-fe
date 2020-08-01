@@ -15,13 +15,22 @@
         <form [formGroup]="registerForm" class="card w-100 pl-4 pr-4 pt-3 pb-3">
             <h5 class="capitalize bold">register</h5>
             <input class="form-control" formControlName="name" placeholder="Full Name">
-            <input class="form-control" formControlName="email" type="email" placeholder="Email Address">
+            <form-error [fCon]="registerForm.controls.name"></form-error>
+            <input class="form-control" formControlName="email" type="email"
+            [ngClass]="{'is-invalid': flags.emailHasBeenRegistered}" placeholder="Email Address">
+            <form-error [fCon]="registerForm.controls.email"></form-error>
             <input class="form-control" formControlName="password" type="password" placeholder="Password">
-            <input class="form-control" formControlName="password" type="password" placeholder="Retype Password">
+            <form-error [fCon]="registerForm.controls.password"></form-error>
+            <input class="form-control" formControlName="confirmPassword"
+            type="password" placeholder="Retype Password">
+            <div style="color: red; padding-bottom: 2pt; font-size: 12px; padding-bottom: 2pt;"
+            [hidden]="passwordMatch" *ngIf="this.registerForm.controls.confirmPassword.dirty">
+                Password must match
+            </div>
             <div class="form-group">
                 <h6 class="text-primary bold">Gender</h6>
                 <div class="custom-control custom-radio custom-control-inline">
-                    <input class="form-check-input" formControlName="gender"  type="radio" name="gender" id="male" value="M">
+                    <input class="form-check-input" formControlName="gender" type="radio" name="gender" id="male" value="M">
                     <label class="form-check-label" for="male">Male</label>
                 </div>
                 <div class="custom-control custom-radio custom-control-inline">
@@ -30,21 +39,26 @@
                 </div>
             </div>
             <h6 class="text-primary bold">Birth Date</h6>
-            <input type="date">
-            <div class="form-inline" formGroupName="birthdate">
+            <div class="form-inline" formGroupName="bd">
                 <input class="form-control mr-2" type="number" formControlName="yyyy" placeholder="Year" style="width: 144pt;">
                 <input class="form-control mr-2" type="number" formControlName="mm"  placeholder="Month" style="width: 72pt;">
                 <input class="form-control" type="number"  formControlName="dd" placeholder="Date" style="width: 72pt;">
             </div>
             <input class="form-control" type="text" formControlName="phone" placeholder="Mobile Phone">
+            <form-error [fCon]="registerForm.controls.phone"></form-error>
+
             <div class="custom-control custom-checkbox mb-1">
                 <input type="checkbox" class="custom-control-input" id="customCheck1"
                 formControlName="agree">
                 <label class="custom-control-label" for="customCheck1">I agree to <a>terms and service</a></label>
+                <form-error [fCon]="registerForm.controls.agree"></form-error>
             </div>
             <textarea class="form-control" placeholder="Your message here.."></textarea>
-            <button class="mt-2 btn btn-primary btn-block" [disabled]="!registerForm.valid"
-            (click)="register()">Send</button>
+            <button class="mt-2 btn btn-primary btn-block" [disabled]="!registerForm.valid || this.flags.isProcessing"
+            (click)="register()">
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" [hidden]="!flags.isProcessing"></span>
+                {{this.flags.isProcessing? "Please wait.." : "Send"}}
+            </button>
         </form>
     </div>
 </div>

@@ -8,6 +8,7 @@ import { NewsCardComponent } from './news-card/news-card.component';
 import { VideosCardComponent } from './videos-card/videos-card.component';
 import { FooterComponent } from './footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormErrorComponent } from './form-error/form-error.component';
 
 const core=[
     CommonModule,
@@ -21,7 +22,8 @@ const frequentlyUsedComponent=[
     HeaderComponent,
     NewsCardComponent,
     VideosCardComponent,
-    FooterComponent
+    FooterComponent,
+    FormErrorComponent
 ]
 
 @NgModule({

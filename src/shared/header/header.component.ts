@@ -70,34 +70,24 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   loginForm = new FormGroup({
-    email: new FormControl("admin@admin.com", {
-      validators: [Validators.required]
+    email: new FormControl(null, {
+      validators: [Validators.required, Validators.email]
     }),
-    password: new FormControl("123456",{
+    password: new FormControl(null,{
       validators: [Validators.required]
     }),
   })
 
   ngOnInit(): void {
     this.screenSvc.prefix.subscribe((res)=>{
-      console.log(res)
       if(res >= 2) this.opened=false
       this.state=res
     })
 
-    window.onscroll = ()=>{
-      let navbar = document.querySelector("header")
-      if(navbar){
-       
-        let params=navbar.getBoundingClientRect()
-        if (window.pageYOffset > params.height*1.1) {
-          this.isSticky=true
-        } else {
-          this.isSticky=false
-        }
-      }
-    }  
+  }
 
+  flags={
+    isProcessing: false
   }
 
   toggle(){
@@ -109,14 +99,24 @@ export class HeaderComponent implements OnInit {
     this.router.navigateByUrl(i.value)
   }
 
-  login(){
-    this.authSvc.login(this.loginForm.value).subscribe(
-      r =>{
-        console.log(r)
-      },
-      err => {
-        console.log(err)
+  async login(){
+    this.flags.isProcessing=true
+
+    try{
+      let res: any = await this.authSvc.login(this.loginForm.value).toPromise()
+      console.log(res)
+      if(res.status == 0) alert("Wrong email and/or password combinations")
+      else {
+        alert("Login is successful")
+        this.authSvc.writeUserToken(res)
+        document.getElementById('hideModal').click()
       }
-    )
+
+    }catch(e){
+      console.log(e)
+    }
+    finally{
+      this.flags.isProcessing=false
+    }
   }
 }

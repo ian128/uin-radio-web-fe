@@ -9,52 +9,100 @@ import { AuthService } from 'src/services/auth.service';
 })
 export class RegisterComponent implements OnInit {
   registerForm = new FormGroup({
-    name: new FormControl('Tesadmin'), 
-    email: new FormControl('tes@tes.com'), 
-    password: new FormControl('123456'), 
-    gender: new FormControl('M'), 
-    birthdate: new FormGroup({
-      dd: new FormControl(27,{
+    name: new FormControl(null,{
+      validators: [Validators.required]
+    }), 
+    email: new FormControl(null,{
+      validators: [Validators.required, Validators.email]
+    }), 
+    password: new FormControl(null,{
+      validators: [Validators.required]
+    }),
+    confirmPassword: new FormControl(null,{
+      validators: [Validators.required]
+    }), 
+    gender: new FormControl(null,{
+      validators: [Validators.required]
+    }), 
+    bd: new FormGroup({
+      dd: new FormControl(null,{
         validators: [Validators.required]
       }),
-      mm: new FormControl(11,{
+      mm: new FormControl(null,{
         validators: [Validators.required]
       }),
-      yyyy: new FormControl(1919,{
+      yyyy: new FormControl(null,{
         validators: [Validators.required]
       })
     }), 
-    phone: new FormControl('08123948576'), 
-    status: new FormControl(1),  
-    agree: new FormControl(true, {
-      validators: Validators.requiredTrue
+    phone: new FormControl(null,{
+      validators: [Validators.required]
+    }), 
+    status: new FormControl(0),  
+    agree: new FormControl(null, {
+      validators: [Validators.requiredTrue]
     })
   })
-  
-  b
+
+  passwordMatch: boolean = false
+
+  flags={
+    isProcessing: false,
+    emailHasBeenRegistered: false,
+  }
+
   constructor(
     private authSvc: AuthService
   ) { }
 
   ngOnInit(): void {
+
+    /*
+    this.registerForm.patchValue({
+      name: "tes", 
+      email: "tes1@tes.com", 
+      password: "123456",
+      confirmPassword: "123456", 
+      gender: "M",
+      bd:{
+        dd: 27,
+        mm: 11,
+        yyyy: 1990
+      }, 
+      phone: "08129384", 
+      status: 0,
+      agree: true
+    })*/
+
+    this.registerForm.controls.confirmPassword.valueChanges.subscribe(
+      (res)=>{
+        let same = this.registerForm.controls.password.value == res
+        this.passwordMatch = same
+      },
+    )
+    
   }
 
 
-  register(){
+  async register(){
+    this.flags.emailHasBeenRegistered=false
     let body = this.registerForm.value
 
-    body.birthdate = body.birthdate.dd.toString().padStart(2,'0')+'/'+
-    body.birthdate.mm.toString().padStart(2,'0')+'/'+body.birthdate.yyyy.toString().padStart(2,'0')
-    console.log(body)
+    body.birthdate = body.bd.dd.toString().padStart(2,'0')+'/'+
+    body.bd.mm.toString().padStart(2,'0')+'/'+body.bd.yyyy.toString().padStart(2,'0')
     
-    return
-    this.authSvc.signUp(this.registerForm.value).subscribe(
-      (res)=>{
-        console.log(res)
-      },
-      (err)=>{
-        console.log(err)
-      }
-    )
+    this.flags.isProcessing=true
+    try{
+      let res = await this.authSvc.signUp(this.registerForm.value).toPromise()
+      alert("Register is successfull")
+      console.log(res)
+    }catch(e){
+      alert("Email has been registered before. Please use another email")
+      this.flags.emailHasBeenRegistered=true
+      console.log(e)
+    }finally{
+      this.flags.isProcessing=false
+    }
+
   }
 }

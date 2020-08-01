@@ -39,7 +39,12 @@ input{
     border-radius: 0 !important;
     font-family: av-nxt !important;
     font-size: 10pt !important;
-    margin-bottom: 6pt !important;
+    margin-bottom: 4pt !important;
+}
+
+.invalid-feedback{
+    margin-top: 0px !important;
+    margin-bottom: 2pt !important;
 }
 
 input[type="radio"]:checked{
@@ -53,5 +58,4 @@ input[type="radio"]:checked{
 textarea{
     font-size: 10pt !important;
     border-radius: 0 !important;
-    min-height: 100pt;
 }

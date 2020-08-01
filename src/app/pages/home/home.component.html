@@ -9,8 +9,46 @@
         <div class="bg-green white capitalize bold p-1">
             <h5>live chat</h5>
         </div>
-        <div class="bg-light-gray" style="height: 70vh;">
-            sdkjhsdhkj
+        <div class="bg-light-gray chat-timeline" id="chatTimeline">
+
+            <div *ngFor="let item of chat; let i = index">
+                <div *ngIf="item.type =='other'; else you">
+                    <div class="chat-bubble row">
+                        <div class="col-auto pr-0 pt-1">
+                            <div class="profile">
+                                <img src="https://previews.123rf.com/images/kritchanut/kritchanut1406/kritchanut140600093/29213195-male-silhouette-avatar-profile-picture.jpg">
+                            </div>
+                        </div>
+                        <div class="col chat-content">
+                            {{item.msg}}
+                        </div>
+                    </div>
+                </div>
+            
+                <ng-template #you>
+                    <div class="chat-bubble row">
+                        <div class="col chat-content">
+                            {{item.msg}}
+                        </div>
+                        <div class="col-auto pt-1 pl-0">
+                            <div class="profile">
+                                <img src="https://previews.123rf.com/images/kritchanut/kritchanut1406/kritchanut140600093/29213195-male-silhouette-avatar-profile-picture.jpg">
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+
+            </div>
+
+        </div>
+        <div class="bg-light-gray p-2">
+            <textarea class="form-control border-0" rows="3"
+            [(ngModel)]="msgVal" placeholder="Ketik disini..." ></textarea>
+            <div class="bg-white text-right p-2">
+                <img src="/assets/pictures/icons/send.png" 
+                style="cursor: pointer" class="icon"
+                (click)="msgVal? sendChat(): null">
+            </div>
         </div>
     </div>
 </div>

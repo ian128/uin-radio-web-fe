@@ -1,0 +1,6 @@
+<div *ngIf="formControl.dirty" style="padding-bottom: 2pt;">
+    <div style="color: red; padding-bottom: 2pt; font-size: 12px;" 
+    *ngFor="let item of formControl.errors | keyvalue">
+        {{errors[item.key]}}
+    </div>
+</div>

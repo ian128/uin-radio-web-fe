@@ -1,14 +1,24 @@
-<button type="button" #loginbtn class="btn btn-primary" hidden data-toggle="modal" data-target="#loginModal"
+<button type="button" #loginbtn hidden data-toggle="modal" data-target="#loginModal"
 ></button>
+
 
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog"  aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <form class="modal-body" [formGroup]="loginForm">
+
+                <button type="button" id="hideModal"
+                data-dismiss="modal" hidden ></button>
+
                 <h6 class="capitalize bold">login</h6>
                 <input type="email" class="form-control" formControlName="email" placeholder="Email address">
+                <form-error [fCon]="loginForm.controls.email"></form-error>
                 <input type="password" class="form-control" formControlName="password" placeholder="Password">
-                <button class="btn btn-primary btn-block" [disabled]="!loginForm.valid" (click)="login()">Login</button>
+                <form-error [fCon]="loginForm.controls.password"></form-error>
+                <button class="btn btn-primary btn-block" [disabled]="!loginForm.valid || this.flags.isProcessing" (click)="login()">
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" [hidden]="!flags.isProcessing"></span>
+                    {{this.flags.isProcessing? "Please wait.." : "Login"}}
+                </button>
                 <div class="caption text-center">Not registered? <a routerLink="/register"
                 data-dismiss="modal">Create an account </a></div>
             </form>
