@@ -10,19 +10,24 @@ import { AuthService } from 'src/services/auth.service';
 export class RegisterComponent implements OnInit {
   registerForm = new FormGroup({
     name: new FormControl(null,{
-      validators: [Validators.required]
+      validators: [Validators.required],
+      updateOn: 'change'
     }), 
     email: new FormControl(null,{
-      validators: [Validators.required, Validators.email]
+      validators: [Validators.required, Validators.email],
+      updateOn: 'change'
     }), 
     password: new FormControl(null,{
-      validators: [Validators.required]
+      validators: [Validators.required],
+      updateOn: 'change'
     }),
     confirmPassword: new FormControl(null,{
-      validators: [Validators.required]
+      validators: [Validators.required],
+      updateOn: 'change'
     }), 
     gender: new FormControl(null,{
-      validators: [Validators.required]
+      validators: [Validators.required],
+      updateOn: 'change'
     }), 
     bd: new FormGroup({
       dd: new FormControl(null,{
@@ -36,11 +41,13 @@ export class RegisterComponent implements OnInit {
       })
     }), 
     phone: new FormControl(null,{
-      validators: [Validators.required]
+      validators: [Validators.required],
+      updateOn: 'change'
     }), 
     status: new FormControl(0),  
     agree: new FormControl(null, {
-      validators: [Validators.requiredTrue]
+      validators: [Validators.requiredTrue],
+      updateOn: 'change'
     })
   })
 
