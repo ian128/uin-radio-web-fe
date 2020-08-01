@@ -1,21 +1,20 @@
 <h5 class="capitalize bold">Videos</h5>
 
-<div class="row pb-3" *ngFor="let item of [].constructor(5)">
+<div class="row pb-3" *ngFor="let item of listOfVideos">
     <div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
         <div class="mb-2 card">
-            <img src="/assets/pictures/placeholder/video-long.jpg">
+            <img [src]="item.image">
         </div>
     </div>
     <div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
        <div class="title">
-            Lorem Ipsum Dolor Sit Amet
+            {{item.title}}
        </div>
        <div class="subtitle">
             by Radio Sinfoni  |  18 July 2020	12:34
         </div>
         <div class="content pb-2">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+           {{item.content}}
         </div>
         <div class="text-primary caption" [routerLink]="">
             <a>selengkapnya ></a>

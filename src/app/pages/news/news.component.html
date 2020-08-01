@@ -1,17 +1,17 @@
 <h5 class="capitalize bold">News</h5>
 
-<div class="row pb-3" *ngFor="let item of [].constructor(5); let i = index">
+<div class="row pb-3" *ngFor="let item of listOfNews | slice : 0: slice; let i = index">
     <div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
         <div class="mb-2 card">
-            <img src="/assets/pictures/placeholder/video-long.jpg">
+            <img [src]="item.image">
         </div>
     </div>
     <div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
        <div class="title">
-            Lorem Ipsum Dolor Sit Amet
+            {{item.title}}
        </div>
        <div class="subtitle">
-            by Radio Sinfoni  |  18 July 2020	12:34
+            by {{item.author}}  |  {{extractDateFromStr(item.datetime)}}
         </div>
         <div class="content pb-2">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
@@ -23,5 +23,5 @@
     </div>
 </div>
 <a>
-    <h6 class="bold text-right">More ></h6>
+    <h6 class="bold text-right" (click)="slice = listOfNews.length">More ></h6>
 </a>
