@@ -36,7 +36,7 @@ export class AuthService{
     }
 
     writeUserToken(body){
-        this.cookiesSvc.set('user', JSON.stringify(body), new Date(new Date().getTime() + 86400000))
+        this.cookiesSvc.set('user', JSON.stringify(body), new Date(new Date().getTime() + 86400000), '/')
     }
 
     getUserToken(){

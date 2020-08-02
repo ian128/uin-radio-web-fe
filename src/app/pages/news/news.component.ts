@@ -38,9 +38,13 @@ export class NewsComponent implements OnInit {
   }
 
   extractDateFromStr(str){
-    let dd = str.slice(0,2)
-    let mm = str.slice(2,4)
-    let yy = str.slice(4,9)
-    return convertDate(`${yy}-${mm}-${dd}`)
+    try{
+      return convertDate(str)
+    }catch(e){
+      let dd = str.slice(0,2)
+      let mm = str.slice(2,4)
+      let yy = str.slice(4,9)
+      return convertDate(`${yy}-${mm}-${dd}`)
+    }
   }
 }
