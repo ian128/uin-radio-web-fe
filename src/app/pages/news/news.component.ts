@@ -47,4 +47,8 @@ export class NewsComponent implements OnInit {
       return convertDate(`${yy}-${mm}-${dd}`)
     }
   }
+
+  addLimit(){
+    this.slice+=3
+  }
 }

@@ -33,4 +33,9 @@ header{
   opacity: 50%;
 }
 
+p{
+  margin-bottom: 0em !important;
+  text-justify: inter-word !important;
+}
+
 @import "node_modules/bootstrap/scss/bootstrap";

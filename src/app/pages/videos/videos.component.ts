@@ -7,6 +7,8 @@ import { VideosService } from 'src/services/videos.service';
   styleUrls: ['./videos.component.scss']
 })
 export class VideosComponent implements OnInit {
+  slice = 3
+
   listOfVideos: any[]
   flags={
     isLoading: false,
@@ -33,4 +35,7 @@ export class VideosComponent implements OnInit {
     
   }
 
+  addLimit(){
+    this.slice+=3
+  }
 }

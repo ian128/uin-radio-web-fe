@@ -14,5 +14,12 @@ export class AppComponent {
   onNavigate: boolean = false
 
   constructor(private router: Router){
+    this.router.events.subscribe(
+      (res)=>{
+        if(res instanceof NavigationEnd){
+          window.scrollTo(0, 0);
+        }
+      }
+    )
   }
 }

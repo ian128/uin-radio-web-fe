@@ -9,6 +9,7 @@ import { VideosCardComponent } from './videos-card/videos-card.component';
 import { FooterComponent } from './footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormErrorComponent } from './form-error/form-error.component';
+import { LoadSkeletonComponent } from './load-skeleton/load-skeleton.component';
 
 const core=[
     CommonModule,
@@ -23,7 +24,8 @@ const frequentlyUsedComponent=[
     NewsCardComponent,
     VideosCardComponent,
     FooterComponent,
-    FormErrorComponent
+    FormErrorComponent,
+    LoadSkeletonComponent
 ]
 
 @NgModule({

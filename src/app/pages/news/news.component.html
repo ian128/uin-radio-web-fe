@@ -1,26 +1,28 @@
 <h5 class="capitalize bold">News</h5>
-
-<div class="row pb-3" *ngFor="let item of listOfNews | slice : 0: slice; let i = index">
-    <div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
-        <div class="mb-2 card">
-            <img [src]="'http://developergadogado.xyz/mantapp/'+item.image">
+<app-load-skeleton *ngIf="flags.isLoading; else doneLoading"></app-load-skeleton>
+<ng-template #doneLoading>
+    <div class="row pb-3" *ngFor="let item of listOfNews | slice : 0: slice; let i = index">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
+            <div class="mb-2 card">
+                <img [src]="'http://developergadogado.xyz/mantapp/'+item.image">
+            </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
+           <div class="title">
+                {{item.title}}
+           </div>
+           <div class="subtitle">
+                by {{item.author}}  |  {{extractDateFromStr(item.datetime)}}
+            </div>
+            <div class="content pb-2 news-preview text-justify" [innerHTML]="item.content">
+    
+            </div>
+            <div class="text-primary caption" routerLink="/news/detail/{{item.id}}">
+                <a>selengkapnya ></a>
+            </div>
         </div>
     </div>
-    <div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
-       <div class="title">
-            {{item.title}}
-       </div>
-       <div class="subtitle">
-            by {{item.author}}  |  {{extractDateFromStr(item.datetime)}}z
-        </div>
-        <div class="content pb-2 news-preview" [innerHTML]="item.content">
-
-        </div>
-        <div class="text-primary caption" routerLink="/news/detail/{{i}}">
-            <a>selengkapnya ></a>
-        </div>
-    </div>
-</div>
-<a>
-    <h6 class="bold text-right" (click)="slice = listOfNews.length">More ></h6>
-</a>
+    <a>
+        <h6 class="bold text-right" [hidden]="slice > this.listOfNews.length" (click)="addLimit()">More ></h6>
+    </a>
+</ng-template>

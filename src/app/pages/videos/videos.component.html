@@ -1,26 +1,29 @@
 <h5 class="capitalize bold">Videos</h5>
+<app-load-skeleton *ngIf="flags.isLoading; else doneLoading"></app-load-skeleton>
 
-<div class="row pb-3" *ngFor="let item of listOfVideos">
-    <div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
-        <div class="mb-2 card">
-            <img [src]="item.image">
+<ng-template #doneLoading>
+    <div class="row pb-3" *ngFor="let item of listOfVideos | slice : 0: slice">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
+            <div class="mb-2 card">
+                <img [src]="'http://developergadogado.xyz/mantapp/'+item.image">
+            </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
+        <div class="title">
+                {{item.title}}
+        </div>
+        <div class="subtitle">
+                by Radio Sinfoni  |  18 July 2020	12:34
+            </div>
+            <div class="content pb-2">
+            {{item.content}}
+            </div>
+            <div class="text-primary caption" [routerLink]="">
+                <a>selengkapnya ></a>
+            </div>
         </div>
     </div>
-    <div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
-       <div class="title">
-            {{item.title}}
-       </div>
-       <div class="subtitle">
-            by Radio Sinfoni  |  18 July 2020	12:34
-        </div>
-        <div class="content pb-2">
-           {{item.content}}
-        </div>
-        <div class="text-primary caption" [routerLink]="">
-            <a>selengkapnya ></a>
-        </div>
-    </div>
-</div>
-<a>
-    <h6 class="bold text-right">More ></h6>
-</a>
+    <a>
+        <h6 class="bold text-right" [hidden]="slice > this.listOfVideos.length" (click)="addLimit()">More ></h6>
+    </a>
+</ng-template>

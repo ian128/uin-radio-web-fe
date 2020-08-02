@@ -5,22 +5,22 @@
         <div class="row text-center mt-3">
             <div class="col">
                 <div class="title bold capitalize">
-                    Lorem Ipsum Dolor Sit Amet
+                    {{newsData.title}}
                 </div>
                 <div class="caption">
-                    By Radio Sinfoni | 18 July 2018 12:34
+                    By {{newsData.author}} | {{newsData.datetime}}
                 </div>
             </div>
         </div>
         <div class="row text-center mt-3">
             <div class="col">
                 <div class="news-photo">
-                    <img src="/assets/pictures/placeholder/z.jpg">
+                    <img [src]="'http://developergadogado.xyz/mantapp/'+newsData.image">
                 </div>
             </div>
         </div>
         <div class="row text-left mt-3">
-            <div class="col news-content" [innerHTML]="newsTxt">
+            <div class="col news-content text-justify" [innerHTML]="getSanitizedContent()">
 
             </div>
         </div>
@@ -38,7 +38,7 @@
                 <div class="title bold">
                     Lorem Ipsum Dolor Sit Amet
                 </div>
-                <div class="content">
+                <div class="content" text-justify>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ...
                 </div>
                 <a class="caption">selengkapnya ></a>
