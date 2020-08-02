@@ -13,17 +13,16 @@
                 {{item.title}}
         </div>
         <div class="subtitle">
-                by Radio Sinfoni  |  18 July 2020	12:34
+                by Radio Simfoni |  {{item.datetime}}
             </div>
-            <div class="content pb-2">
-            {{item.content}}
+            <div class="content pb-2" [innerHTML]="sanitizedInnerHtml(item.content)">
             </div>
-            <div class="text-primary caption" [routerLink]="">
+            <a class="text-primary caption" [href]="item.videolink" target="_blank">
                 <a>selengkapnya ></a>
-            </div>
+            </a>
         </div>
     </div>
     <a>
-        <h6 class="bold text-right" [hidden]="slice > this.listOfVideos.length" (click)="addLimit()">More ></h6>
+        <h6 class="bold text-right" [hidden]="slice >= this.listOfVideos.length" (click)="addLimit()">More ></h6>
     </a>
 </ng-template>

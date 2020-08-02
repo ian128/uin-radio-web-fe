@@ -23,6 +23,6 @@
         </div>
     </div>
     <a>
-        <h6 class="bold text-right" [hidden]="slice > this.listOfNews.length" (click)="addLimit()">More ></h6>
+        <h6 class="bold text-right" [hidden]="slice >= this.listOfNews.length" (click)="addLimit()">More ></h6>
     </a>
 </ng-template>

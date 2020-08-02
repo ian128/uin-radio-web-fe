@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { VideosService } from 'src/services/videos.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-videos',
@@ -14,7 +15,8 @@ export class VideosComponent implements OnInit {
     isLoading: false,
   }
   constructor(
-    private videosSvc: VideosService
+    private videosSvc: VideosService,
+    private sanitizer: DomSanitizer
   ) { }
 
   ngOnInit(): void {
@@ -37,5 +39,9 @@ export class VideosComponent implements OnInit {
 
   addLimit(){
     this.slice+=3
+  }
+  
+  sanitizedInnerHtml(src){
+    return this.sanitizer.bypassSecurityTrustHtml(src)
   }
 }
