@@ -13,7 +13,7 @@
        <div class="subtitle">
             by {{item.author}}  |  {{extractDateFromStr(item.datetime)}}z
         </div>
-        <div class="content pb-2" [innerHTML]="item.content"  style="height: 108pt; overflow: hidden; text-overflow: ellipsis;">
+        <div class="content pb-2 news-preview" [innerHTML]="item.content">
 
         </div>
         <div class="text-primary caption" routerLink="/news/detail/{{i}}">
