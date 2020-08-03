@@ -28,7 +28,7 @@
 
     </div>
     <div class="m-0
-    col-sm-12 col-md-4 col-lg-4 col-xl-4 text-center
+    col-sm-12 col-md-3 col-lg-3 col-xl-3 text-center
     p-3
     ">
         <div class="align-self-center">
@@ -38,23 +38,23 @@
             <img src="/assets/pictures/icons/gplay.png" style="cursor: pointer;  width: 150px;">
         </div>
     </div>
+    
     <div class="
     mr-4
     col text-right
-    ">
-        <div class="row">
-            <div class="col">
-                T
-            </div>
-            <div class="col">
-                F
-            </div>
-            <div class="col">
-                C
+    "
+    [ngClass]="{'text-right': screenNotation >= 2, ' text-center': screenNotation < 2}">
+        <div class="row pt-2 pb-5">
+            <div class="col 
+            d-flex"
+            [ngClass]="{'justify-content-end': screenNotation >= 2, 'justify-content-center': screenNotation < 2}">
+                <img class="social-logo mr-5" src="/assets/pictures/icons/fb.png">
+                <img class="social-logo mr-5" src="/assets/pictures/icons/tw.png">
+                <img class="social-logo" src="/assets/pictures/icons/ig.png">
             </div>
         </div>
-        <div class="row">
-            <div class="col white" style="font-size: 11px;">
+        <div class="row pt-1">
+            <div class="col white" style="font-size: 12px;">
                 © Copyright Radio Sinfoni 107.8 FM UIN Mataram 2020
             </div>
         </div>

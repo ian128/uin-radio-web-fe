@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ScreenService } from 'src/services/screen.service';
 
 @Component({
   selector: 'footer',
@@ -33,9 +34,15 @@ export class FooterComponent implements OnInit {
     }
   ]
   
-  constructor() { }
+  constructor(
+    private screenSvc: ScreenService
+  ) { }
 
+  screenNotation
   ngOnInit(): void {
+    this.screenSvc.prefix.subscribe(
+      r => this.screenNotation = r
+    )
   }
 
 }

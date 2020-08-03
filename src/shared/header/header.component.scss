@@ -72,8 +72,14 @@
     }
 }
 
+.social-logo{
+    cursor: pointer;
+    height: 20pt;
+    width: 20pt;
+}
+
 .sticky {
     position: fixed !important;
     background-color: white;
     z-index: 999;
-  }
+}
