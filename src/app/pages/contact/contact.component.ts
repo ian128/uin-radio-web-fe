@@ -41,6 +41,7 @@ export class ContactComponent implements OnInit {
       let res = await this.genericSvc.sendInquiry(this.form.value).toPromise()
       console.log(res)
       alert("Inquiry has been sent! We will reply you as soon as possible")
+      this.form.reset()
     }catch(e){
 
     }finally{
