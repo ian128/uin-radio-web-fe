@@ -7,10 +7,10 @@
         col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9">
             <div class="mb-3 card" *ngFor="let item of listOfLiveShows | slice : 0: slice ; let i = index"
             (click)="playVideo(i)">
-                <img *ngIf="!item.play" [src]="'http://developergadogado.xyz/mantapp/'+item.image" (click)="item.play=true">
+                <img *ngIf="!item.play" [src]="'https://developergadogado.xyz/mantapp/'+item.image" (click)="item.play=true">
 
-                <video *ngIf="item.play" playsinline [src]="item.videolink" frameborder="0" allowfullscreen>
-                </video>    
+                <iframe *ngIf="item.play" playsinline [src]="item.videolink" frameborder="0" allowfullscreen>
+                </iframe>    
 
             </div>
             <a>
