@@ -3,7 +3,20 @@
     width: 100%;
     height: 220px;
     overflow: hidden;
+
+    .desc{
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background-color: #000000A0;
+    }
+    
+    video{
+        height: 100%;
+        width: 100%;
+    }
     img{
+        cursor: pointer;
         height: 100%;
         width: 100%;
         object-fit: cover;

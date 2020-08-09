@@ -5,8 +5,15 @@
     <div class="row">
         <div class="
         col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9">
-            <div class="mb-3 card" *ngFor="let item of listOfLiveShows | slice : 0: slice ">
-                <img [src]="'http://developergadogado.xyz/mantapp/'+item.image">
+            <div class="mb-3 card" *ngFor="let item of listOfLiveShows | slice : 0: slice ; let i = index"
+            (click)="playVideo(i)">
+                <img *ngIf="!item.play" [src]="'http://developergadogado.xyz/mantapp/'+item.image" (click)="item.play=true">
+
+                <video controls *ngIf="item.play">
+                    <source [src]="item.videolink">
+                  Your browser does not support the video tag.
+                </video>
+
             </div>
             <a>
                 <h6 class="bold text-right"

@@ -44,4 +44,8 @@ export class LiveShowComponent implements OnInit {
   sanitizedInnerHtml(src){
     return this.sanitizer.bypassSecurityTrustHtml(src)
   }
+
+  playVideo(index){
+    this.listOfLiveShows[index].play = true
+  }
 }
