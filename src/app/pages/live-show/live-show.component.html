@@ -9,8 +9,8 @@
             (click)="playVideo(i)">
                 <img *ngIf="!item.play" [src]="'http://developergadogado.xyz/mantapp/'+item.image" (click)="item.play=true">
 
-                <iframe *ngIf="item.play" [src]="item.videolink" frameborder="0" allowfullscreen>
-                </iframe>    
+                <video *ngIf="item.play" playsinline [src]="item.videolink" frameborder="0" allowfullscreen>
+                </video>    
 
             </div>
             <a>
