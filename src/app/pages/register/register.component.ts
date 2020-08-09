@@ -29,17 +29,10 @@ export class RegisterComponent implements OnInit {
       validators: [Validators.required],
       updateOn: 'change'
     }), 
-    bd: new FormGroup({
-      dd: new FormControl(null,{
-        validators: [Validators.required]
-      }),
-      mm: new FormControl(null,{
-        validators: [Validators.required]
-      }),
-      yyyy: new FormControl(null,{
-        validators: [Validators.required]
-      })
-    }), 
+    bdate: new FormControl(null,{
+      validators: [Validators.required],
+      updateOn: 'change'
+    }),
     phone: new FormControl(null,{
       validators: [Validators.required],
       updateOn: 'change'
@@ -95,9 +88,13 @@ export class RegisterComponent implements OnInit {
     this.flags.emailHasBeenRegistered=false
     let body = this.registerForm.value
 
-    body.birthdate = body.bd.dd.toString().padStart(2,'0')+'/'+
-    body.bd.mm.toString().padStart(2,'0')+'/'+body.bd.yyyy.toString().padStart(2,'0')
-    
+    let bDateSplit = this.registerForm.controls.bdate.value.split('-')
+
+    body.birthdate = bDateSplit[0]+'/'+
+    bDateSplit[1]+'/'+bDateSplit[2]
+
+    console.log(body)
+  
     this.flags.isProcessing=true
     try{
       let res = await this.authSvc.signUp(this.registerForm.value).toPromise()

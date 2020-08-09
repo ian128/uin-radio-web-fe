@@ -13,7 +13,7 @@ export class LoginGuardService implements CanActivate {
       private location: Location,
     ) {}
   canActivate(): boolean {
-    if (this.authSvc.getUserToken()) {
+    if(!this.authSvc.getUserToken()) {
         this.router.navigate(['/home']);
         return false;
     }else{

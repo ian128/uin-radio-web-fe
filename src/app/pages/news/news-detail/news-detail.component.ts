@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NewsService } from 'src/services/news.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
+import { convertDate } from 'src/shared/utils';
 
 @Component({
   selector: 'app-news-detail',
@@ -25,15 +26,40 @@ export class NewsDetailComponent implements OnInit {
     private newsSvc: NewsService,
     private activatedRoute: ActivatedRoute,
     private sanitizer: DomSanitizer,
+    private router: Router
   ) {
-    this.flags.selectedID = this.activatedRoute.snapshot.params.id
   }
+
+
+  otherNews: any[]
 
   ngOnInit(): void {
     this.getNewsDetails()
+    this.getOtherNews()
+
+    this.router.events.subscribe(
+      (res)=>{
+        if(res instanceof NavigationEnd){
+          this.getNewsDetails()
+          this.getOtherNews()
+        }
+      }
+    )
+  }
+
+  async getOtherNews(){
+    try{
+      let res: any = await this.newsSvc.getNews().toPromise()
+      this.otherNews= res.filter(i => i.id != this.flags.selectedID)
+    }catch(e){
+
+    }finally{
+      
+    }
   }
 
   async getNewsDetails(){
+    this.flags.selectedID = this.activatedRoute.snapshot.params.id
     try{
       this.flags.isLoading=true
       let res = await this.newsSvc.getNewsDetail(this.flags.selectedID)
@@ -46,7 +72,11 @@ export class NewsDetailComponent implements OnInit {
     }
   }
 
-  getSanitizedContent(){
-    return this.sanitizer.bypassSecurityTrustHtml(this.newsData.content)
+  getSanitizedContent(content){
+    return this.sanitizer.bypassSecurityTrustHtml(content)
+  }
+
+  extractDateFromStr(str){
+    return convertDate(str)
   }
 }

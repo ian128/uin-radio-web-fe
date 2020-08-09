@@ -8,7 +8,7 @@
                     {{newsData.title}}
                 </div>
                 <div class="caption">
-                    By {{newsData.author}} | {{newsData.datetime}}
+                    By {{newsData.author}} | {{extractDateFromStr(newsData.datetime)}}
                 </div>
             </div>
         </div>
@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="row text-left mt-3">
-            <div class="col news-content text-justify" [innerHTML]="getSanitizedContent()">
+            <div class="col news-content text-justify" [innerHTML]="getSanitizedContent(newsData.content)">
 
             </div>
         </div>
@@ -28,20 +28,22 @@
     <div class="
     col-sm-12 col-md-12 col-lg-4 col-xl-4 border-top">
         <h5 class="capitalize bold mt-2 mb-3">news archive</h5>
-        <div class="row mb-3" *ngFor="let item of [].constructor(3)">
+        <div class="row mb-3" *ngFor="let item of otherNews | slice:0:3">
             <div class="col-6">
                 <div class="news-photo-small">
-                    <img src="/assets/pictures/placeholder/z.jpg">
+                    <img [src]="'http://developergadogado.xyz/mantapp/'+item.image">
                 </div>
             </div>
             <div class="col-6">
                 <div class="title bold">
-                    Lorem Ipsum Dolor Sit Amet
+                    {{item.title}}
                 </div>
-                <div class="content" text-justify>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ...
+                <div class="content text-justify"
+                style="max-height: 48pt; text-overflow: ellipsis; overflow: hidden;"
+                [innerHTML]="getSanitizedContent(item.content)">
+                    
                 </div>
-                <a class="caption">selengkapnya ></a>
+                <a class="caption" routerLink="/news/detail/{{item.id}}">selengkapnya ></a>
             </div>
         </div>
     </div>

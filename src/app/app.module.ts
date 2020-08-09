@@ -9,6 +9,8 @@ import { RegisterComponent } from './pages/register/register.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from 'src/interceptors/httpInterceptor';
 import { CookieService } from 'ngx-cookie-service';
+import { LoginGuardService } from 'src/guards/login-guard.service';
+import { LogoutGuardService } from 'src/guards/logout-guard.service';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { CookieService } from 'ngx-cookie-service';
   ],
   providers: [
     CookieService,
+    LogoutGuardService,
+    LoginGuardService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,

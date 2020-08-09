@@ -112,6 +112,8 @@ export class HeaderComponent implements OnInit {
         alert("Login is successful")
         this.authSvc.writeUserToken(res)
         document.getElementById('hideModal').click()
+
+        if(this.router.url.includes('/register')) this.router.navigateByUrl('/home') 
       }
 
     }catch(e){
@@ -120,5 +122,13 @@ export class HeaderComponent implements OnInit {
     finally{
       this.flags.isProcessing=false
     }
+  }
+
+  logout(){
+    let res = this.authSvc.logOut()
+  }
+
+  isLoggedIn(){
+    return this.authSvc.getUserToken() != false
   }
 }

@@ -39,11 +39,8 @@
                 </div>
             </div>
             <h6 class="text-primary bold">Birth Date</h6>
-            <div class="form-inline" formGroupName="bd">
-                <input class="form-control mr-2" type="number" formControlName="yyyy" placeholder="Year" style="width: 144pt;">
-                <input class="form-control mr-2" type="number" formControlName="mm"  placeholder="Month" style="width: 72pt;">
-                <input class="form-control" type="number"  formControlName="dd" placeholder="Date" style="width: 72pt;">
-            </div>
+            <input class="form-control" type="date" formControlName="bdate">
+            
             <input class="form-control" type="text" formControlName="phone" placeholder="Mobile Phone">
             <form-error [fCon]="registerForm.controls.phone"></form-error>
 

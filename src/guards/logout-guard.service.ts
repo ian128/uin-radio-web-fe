@@ -10,10 +10,11 @@ export class LogoutGuardService implements CanActivate {
       private authSvc: AuthService
     ) {}
   canActivate(): boolean {
-    if (!this.authSvc.getUserToken()) {
-        return false;
+    if (this.authSvc.getUserToken()) {
+      this.router.navigateByUrl('/home')
+      return false;
     }else{
-        return true;
+      return true;
     }
   }
 }
