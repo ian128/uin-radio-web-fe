@@ -28,6 +28,9 @@ export class LiveShowComponent implements OnInit {
     try{
       let res: any= await this.liveShowSvc.getLiveShows().toPromise()
       this.listOfLiveShows = res
+      this.listOfLiveShows.forEach(i=>{
+        i.videolink = this.sanitizer.bypassSecurityTrustResourceUrl(i.videolink)
+      })
       console.log(this.listOfLiveShows)
     }catch(e){
 

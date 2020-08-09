@@ -11,6 +11,7 @@ import { TokenInterceptor } from 'src/interceptors/httpInterceptor';
 import { CookieService } from 'ngx-cookie-service';
 import { LoginGuardService } from 'src/guards/login-guard.service';
 import { LogoutGuardService } from 'src/guards/logout-guard.service';
+import { SafePipe } from 'src/pipes/sanitize-url.pipe';
 
 @NgModule({
   declarations: [
