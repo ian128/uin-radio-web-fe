@@ -22,6 +22,6 @@ export class VideosService{
     }
 
     getVideos(){
-       return this.http.get(environment.base_API+'videos/')
+       return this.http.get(environment.base_API+'/videos/')
     }
 }
