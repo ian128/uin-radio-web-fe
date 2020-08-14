@@ -22,11 +22,11 @@ export class NewsService{
     }
 
     getNews(){
-       return this.http.get(environment.base_API+'news/')
+       return this.http.get(environment.base_API+'/news')
     }
 
     async getNewsDetail(id){
-        let res: any[]= await this.http.get<any>(environment.base_API+'news/').toPromise()
+        let res: any[]= await this.http.get<any>(environment.base_API+'/news/').toPromise()
         let news = res.find( i => i.id == id)
         return news
     }
