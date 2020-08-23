@@ -27,7 +27,7 @@ export class LiveShowComponent implements OnInit {
     this.flags.isLoading=true
     try{
       let res: any= await this.liveShowSvc.getLiveShows().toPromise()
-      this.listOfLiveShows = res
+      this.listOfLiveShows = res.reverse()
       this.listOfLiveShows.forEach(i=>{
         i.videolink = this.sanitizer.bypassSecurityTrustResourceUrl(i.videolink)
       })

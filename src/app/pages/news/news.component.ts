@@ -27,7 +27,7 @@ export class NewsComponent implements OnInit {
     this.flags.isLoading=true
     try{
       let res: any= await this.newsSvc.getNews().toPromise()
-      this.listOfNews = res
+      this.listOfNews = res.reverse()
       console.log(this.listOfNews)
     }catch(e){
 

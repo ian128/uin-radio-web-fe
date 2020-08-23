@@ -49,6 +49,7 @@ export class VideoDetailComponent implements OnInit {
   async getOtherVideos(){
     try{
       let res: any = await this.videoSvc.getVideos().toPromise()
+      res = res.reverse()
       this.otherVideos= res.filter(i => i.id != this.flags.selectedID)
     }catch(e){
 

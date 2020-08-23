@@ -50,6 +50,7 @@ export class NewsDetailComponent implements OnInit {
   async getOtherNews(){
     try{
       let res: any = await this.newsSvc.getNews().toPromise()
+      res = res.reverse()
       this.otherNews= res.filter(i => i.id != this.flags.selectedID)
     }catch(e){
 

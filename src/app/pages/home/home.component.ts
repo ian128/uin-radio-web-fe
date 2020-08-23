@@ -3,6 +3,7 @@ import { VideosService } from 'src/services/videos.service';
 import { NewsService } from 'src/services/news.service';
 import { LiveShowService } from 'src/services/live-show.service';
 import { NgImageSliderComponent } from 'ng-image-slider';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -12,8 +13,9 @@ import { NgImageSliderComponent } from 'ng-image-slider';
 export class HomeComponent implements OnInit, AfterViewInit {
   @ViewChild('nav') slider: NgImageSliderComponent;
 
-  
-  liveShows: any;
+  recentLiveShow: any
+
+  liveShows: any
   videos: any
   news: any
   
@@ -68,7 +70,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
   constructor(
     private videosSvc: VideosService,
     private newsSvc: NewsService,
-    private liveShowSvc: LiveShowService
+    private liveShowSvc: LiveShowService,
+    private sanitizer: DomSanitizer
   ) { }
   
   ngAfterViewInit(): void {
@@ -79,17 +82,21 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.chatTL = document.getElementById('chatTimeline')
 
     this.videosSvc.getVideos().toPromise().then(i =>{
-      this.videos = i
+      let ar:any=i
+      this.videos = ar.reverse()
       this.videos = this.videos.splice(0,3)
     })
     this.newsSvc.getNews().toPromise().then(i =>{
-      this.news = i
+      let ar:any=i
+      this.news = ar.reverse()
       this.news = this.news.splice(0,3)
     })
 
     this.liveShowSvc.getLiveShows().toPromise().then(i=>{
-      this.liveShows = i
-      this.liveShows = this.liveShows.splice(0,3)
+      let ar:any=i
+      this.liveShows = ar.reverse()
+      this.recentLiveShow = this.sanitizer.bypassSecurityTrustResourceUrl(ar[0].videolink)
+      this.liveShows = this.liveShows.splice(1,4)
       let imageObject=[]
       imageObject.push({image: null, thumbImage: null})
       for(let item of this.liveShows){

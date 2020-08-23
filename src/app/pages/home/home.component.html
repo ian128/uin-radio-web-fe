@@ -2,7 +2,10 @@
     <div class="col-12 col-sm-12 col-md-9 col-lg-9 pb-3">
         <h5 class="capitalize bold">Live-<span class="text-primary">now</span></h5>
         <div class="bg-light-gray">
-            <img style="width: 100% !important;" src="/assets/pictures/placeholder/video.jpg">
+            <iframe class="live-now" [src]="recentLiveShow"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+            playsinline frameborder="0" allowfullscreen>
+            </iframe>
         </div>
     </div>
     <div class="col-12 col-sm-12 col-md-3 col-lg-3 h-100">

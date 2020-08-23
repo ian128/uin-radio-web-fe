@@ -27,7 +27,7 @@ export class VideosComponent implements OnInit {
     this.flags.isLoading=true
     try{
       let res: any= await this.videosSvc.getVideos().toPromise()
-      this.listOfVideos = res
+      this.listOfVideos = res.reverse()
       console.log(this.listOfVideos)
     }catch(e){
 
