@@ -4,6 +4,7 @@ import { NewsService } from 'src/services/news.service';
 import { LiveShowService } from 'src/services/live-show.service';
 import { NgImageSliderComponent } from 'ng-image-slider';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ScreenService } from 'src/services/screen.service';
 
 @Component({
   selector: 'app-home',
@@ -18,6 +19,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
   liveShows: any
   videos: any
   news: any
+
+  screenSizeMode: any
   
   isCarouselCanLoad: true
 
@@ -71,7 +74,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
     private videosSvc: VideosService,
     private newsSvc: NewsService,
     private liveShowSvc: LiveShowService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private screenSvc: ScreenService
   ) { }
   
   ngAfterViewInit(): void {
@@ -80,6 +84,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.chatTL = document.getElementById('chatTimeline')
+
+    this.screenSvc.prefix.subscribe(r=>{
+      this.screenSizeMode = r
+    })
 
     this.videosSvc.getVideos().toPromise().then(i =>{
       let ar:any=i

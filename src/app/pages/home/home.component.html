@@ -3,6 +3,10 @@
         <h5 class="capitalize bold">Live-<span class="text-primary">now</span></h5>
         <div class="bg-light-gray">
             <iframe class="live-now" [src]="recentLiveShow"
+            [ngClass]="{
+                'live-now': screenSizeMode>2,
+                'live-now-mobile': screenSizeMode <=2
+            }"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
             playsinline frameborder="0" allowfullscreen>
             </iframe>
