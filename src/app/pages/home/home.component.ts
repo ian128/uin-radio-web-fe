@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { VideosService } from 'src/services/videos.service';
+import { NewsService } from 'src/services/news.service';
 
 @Component({
   selector: 'app-home',
@@ -6,6 +8,9 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  videos: any
+  news: any
+
   chatTL: any
   chat=[
     {
@@ -52,10 +57,22 @@ export class HomeComponent implements OnInit {
 
   msgVal: any
 
-  constructor() { }
+  constructor(
+    private videosSvc: VideosService,
+    private newsSvc: NewsService
+  ) { }
 
   ngOnInit(): void {
     this.chatTL = document.getElementById('chatTimeline')
+
+    this.videosSvc.getVideos().toPromise().then(i =>{
+      this.videos = i
+      this.videos = this.videos.splice(0,3)
+    })
+    this.newsSvc.getNews().toPromise().then(i =>{
+      this.news = i
+      this.news = this.news.splice(0,3)
+    })
   }
 
   scrollTL(){

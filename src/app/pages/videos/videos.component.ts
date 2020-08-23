@@ -8,7 +8,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./videos.component.scss']
 })
 export class VideosComponent implements OnInit {
-  slice = 3
+  slice = 5
 
   listOfVideos: any[]
   flags={
@@ -38,7 +38,7 @@ export class VideosComponent implements OnInit {
   }
 
   addLimit(){
-    this.slice+=3
+    this.slice+=5
   }
   
   sanitizedInnerHtml(src){

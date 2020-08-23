@@ -17,7 +17,7 @@
             </div>
             <div class="content pb-2 news-description" [innerHTML]="sanitizedInnerHtml(item.content)">
             </div>
-            <a class="text-primary caption" [href]="item.videolink" target="_blank">
+            <a class="text-primary caption" routerLink="/videos/detail/{{item.id}}">
                 <a>selengkapnya ></a>
             </a>
         </div>

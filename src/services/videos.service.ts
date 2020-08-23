@@ -24,4 +24,9 @@ export class VideosService{
     getVideos(){
        return this.http.get(environment.base_API+'/videos/')
     }
+
+    async getVideoByID(id){
+        let res: any = await this.http.get(environment.base_API+'/videos/getVideos/'+id).toPromise()
+        return res;
+    }
 }

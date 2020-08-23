@@ -83,9 +83,9 @@
         <div class="w-100 border-top pt-2 pb-4">
             <h5 class="capitalize bold">Videos</h5>
             <div class="row">
-                <videos-card  class="p-0 col-12 col-sm-4 col-lg-4 col-xl-4"></videos-card>
-                <videos-card  class="p-0 col-12 col-sm-4 col-lg-4 col-xl-4"></videos-card>
-                <videos-card  class="p-0 col-12 col-sm-4 col-lg-4 col-xl-4"></videos-card>
+                <videos-card *ngFor="let item of videos"
+                [data]="item"
+                class="p-0 col-12 col-sm-4 col-lg-4 col-xl-4"></videos-card>
             </div>
             
         </div>
@@ -108,9 +108,7 @@
     col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5">
         <div class="w-100 border-top pt-2">
             <h5 class="capitalize bold">News</h5>
-            <news-card></news-card>
-            <news-card></news-card>
-            <news-card></news-card>
+            <news-card [data]="item" *ngFor="let item of news"></news-card>
         </div>
     </div>
 </div>

@@ -3,20 +3,17 @@
     col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5
     mb-2">
         <div class="image-wrap">
-            <img src="/assets/pictures/placeholder/news-thumbnail.jpg">
+            <img [src]="'https://developergadogado.xyz/mantapp/'+data.image">
         </div>
     </div>
     <div class="
     col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7">
-        <div class="title">
-            Lorem Ipsum Dolor Sit Amet
+        <div class="title" [innerHTML]="data.title">
+           
         </div>
-        <div class="subtitle news-description">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-
+        <div class="subtitle news-description" [innerHTML]="data.content">
         </div>
-        <a class="caption text-primary" href="">
+        <a class="caption text-primary" routerLink="/news/detail/{{data.id}}">
             selengkapnya > 
         </a>
     </div>

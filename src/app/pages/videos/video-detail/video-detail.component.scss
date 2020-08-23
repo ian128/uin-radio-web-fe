@@ -1,0 +1,33 @@
+.news-photo{
+    border-radius: 0px !important;
+    width: inherit;
+    height: 335px;
+    overflow: hidden;
+    img{
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+    iframe{
+        height: 100%;
+        width: 100%;
+    }
+}
+
+.news-photo-small{
+    border-radius: 0px !important;
+    width: inherit;
+    height: 115px;
+    overflow: hidden;
+    img{
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+}
+
+.news-content{
+    text-justify: inter-word !important;
+    font-size: 14px;
+    text-indent: 12pt;
+}

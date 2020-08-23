@@ -8,7 +8,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./live-show.component.scss']
 })
 export class LiveShowComponent implements OnInit {
-  slice = 3
+  slice = 5
 
   listOfLiveShows: any[]
   flags={
@@ -41,7 +41,7 @@ export class LiveShowComponent implements OnInit {
   }
 
   addLimit(){
-    this.slice+=3
+    this.slice+=5
   }
   
   sanitizedInnerHtml(src){

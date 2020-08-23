@@ -9,7 +9,7 @@ import { convertDate } from 'src/shared/utils';
 })
 export class NewsComponent implements OnInit {
   listOfNews: any[]
-  slice = 3
+  slice = 5
 
   flags={
     isLoading: false,
@@ -49,6 +49,6 @@ export class NewsComponent implements OnInit {
   }
 
   addLimit(){
-    this.slice+=3
+    this.slice+=5
   }
 }

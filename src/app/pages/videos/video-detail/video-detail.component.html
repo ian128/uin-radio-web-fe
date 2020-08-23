@@ -1,0 +1,53 @@
+<div class="row m-0">
+    <div class="
+    col-sm-12 col-md-12 col-lg-8 col-xl-8 pt-2 pb-2 pl-1 pr-1">
+        <h5 class="capitalize bold border-bottom">Video</h5>
+        <div class="row text-center mt-3">
+            <div class="col">
+                <div class="title bold capitalize">
+                    {{data.title}}
+                </div>
+                <div class="caption">
+                  Published on {{extractDateFromStr(data.datetime)}}
+                </div>
+            </div>
+        </div>
+        <div class="row text-center mt-3">
+            <div class="col news-photo">
+                <img [src]="'https://developergadogado.xyz/mantapp/'+data.image"
+                style="cursor: pointer" (click)="flags.play=true" [hidden]="flags.play">
+
+                <iframe *ngIf="flags.play" class=""
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                playsinline [src]="videoUrl" frameborder="0" allowfullscreen>
+                </iframe>    
+            </div>
+        </div>
+        <div class="row text-left mt-3">
+            <div class="col news-content text-justify" [innerHTML]="getSanitizedContent(data.content)">
+
+            </div>
+        </div>
+    </div>
+    <div class="
+    col-sm-12 col-md-12 col-lg-4 col-xl-4 border-top">
+        <h5 class="capitalize bold mt-2 mb-3">Videos archive</h5>
+        <div class="row mb-3" *ngFor="let item of otherVideos | slice:0:3">
+            <div class="col-6">
+                <div class="news-photo-small">
+                    <img [src]="'https://developergadogado.xyz/mantapp/'+item.image">
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="title bold">
+                    {{item.title}}
+                </div>
+                <div class="content news-description"
+                [innerHTML]="getSanitizedContent(item.content)">
+                    
+                </div>
+                <a class="caption" routerLink="/videos/detail/{{item.id}}">selengkapnya ></a>
+            </div>
+        </div>
+    </div>
+</div>

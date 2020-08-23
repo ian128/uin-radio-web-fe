@@ -1,10 +1,9 @@
-<div class="col-12">
+<div class="col-12" style="cursor: pointer" routerLink="/videos/detail/{{data.id}}">
     <div class="image-wrap">
-        <img src="/assets/pictures/placeholder/news-thumbnail.jpg">
+        <img [src]="'https://developergadogado.xyz/mantapp/'+data.image">
     </div>
 </div>
-<div class="col-12">
-    <div class="title pt-2">
-        Lorem Ipsum Dolor Sit Amet
+<div class="col-12" style="cursor: pointer" routerLink="/videos/detail/{{data.id}}">
+    <div class="title pt-2" [innerHTML]="data.title">
     </div>
 </div>
