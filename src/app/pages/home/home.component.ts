@@ -90,12 +90,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.liveShowSvc.getLiveShows().toPromise().then(i=>{
       this.liveShows = i
       this.liveShows = this.liveShows.splice(0,3)
-      let imageObject=[{image: null, thumbImage: null}]
-
+      let imageObject=[]
+      imageObject.push({image: null, thumbImage: null})
       for(let item of this.liveShows){
         imageObject.push({
-          image: 'https://developergadogado.xyz/mantapp/'+item.image,
-          thumbImage: 'https://developergadogado.xyz/mantapp/'+item.image,
+          video: item.videolink,
+          posterImage: 'https://developergadogado.xyz/mantapp/'+item.image,
         })
       }
 
@@ -114,13 +114,16 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   next(){
+    this.slider.autoSlide=false
     this.slider.next()
   }
   prev(){
+    this.slider.autoSlide=false
     this.slider.prev()
   }
 
   redirect(e){
+    this.slider.autoSlide=false
     console.log(e)
   }
 
