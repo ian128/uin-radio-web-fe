@@ -126,9 +126,15 @@ export class HeaderComponent implements OnInit {
 
   logout(){
     let res = this.authSvc.logOut()
+    if(res) alert("Logout berhasil")
   }
 
   isLoggedIn(){
-    return this.authSvc.getUserToken() != false
+    return this.authSvc.isLoggedIn()
+  }
+
+  getUserToken(){
+    let res = this.authSvc.getUserProfile()['data login']
+    return res
   }
 }

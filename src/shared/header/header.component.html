@@ -61,6 +61,9 @@
                 </div>
                 <ng-template #loggedIn>
                     <div class="row">
+                        <div class="col bold text-left" style="cursor: pointer;">
+                            Profil
+                        </div>
                         <div class="col bold text-right" style="cursor: pointer;" (click)="logout()">
                             Log Out
                         </div>
@@ -118,20 +121,27 @@
                     {{item.name}}
                 </li>
 
-                <li class="lnk mt-4" routerLink="/register" [hidden]="isLoggedIn()"
-                (click)="opened=false">
-                    Sign Up
-                </li>
+                <div  [hidden]="isLoggedIn()">
+                    <li class="lnk mt-4" routerLink="/register"
+                    (click)="opened=false">
+                        Sign Up
+                    </li>
 
-                <li class="lnk" [hidden]="isLoggedIn()"
-                (click)="loginbtn.click(); opened=false ">
-                    Login
-                </li>
+                    <li class="lnk"
+                    (click)="loginbtn.click(); opened=false ">
+                        Login
+                    </li>
+                </div>
 
-                <li class="lnk mt-4" [hidden]="!isLoggedIn()"
-                (click)="opened=false; logout()">
-                    Log Out
-                </li>
+                <div class="mt-4" *ngIf="isLoggedIn()">
+                    <li class="lnk-caption">
+                        Halo, {{getUserToken().nama}}
+                    </li>
+                    <li class="lnk"
+                    (click)="opened=false; logout()">
+                        Log Out
+                    </li>
+                </div>
             </ul> 
     
         </div>

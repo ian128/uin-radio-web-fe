@@ -14,7 +14,7 @@
            <div class="subtitle">
                 by {{item.author}}  |  {{extractDateFromStr(item.datetime)}}
             </div>
-            <div class="content pb-2 news-preview text-justify" [innerHTML]="item.content">
+            <div class="content pb-2 news-description " [innerHTML]="item.content">
     
             </div>
             <div class="text-primary caption" routerLink="/news/detail/{{item.id}}">
