@@ -59,3 +59,18 @@ textarea{
     font-size: 10pt !important;
     border-radius: 0 !important;
 }
+
+.custom-image-main{
+    img{
+        height: 100% !important;
+        width: 100% !important;
+        object-fit: cover !important;
+    }
+
+    .prev.icons{
+        background: #000000 !important;
+    }
+    .next.icons{
+
+    }
+}

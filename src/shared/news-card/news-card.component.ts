@@ -10,7 +10,6 @@ export class NewsCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.data)
   }
 
 }

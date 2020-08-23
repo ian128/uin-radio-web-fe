@@ -14,10 +14,7 @@
         </div>
         <div class="row text-center mt-3">
             <div class="col news-photo">
-                <img [src]="'https://developergadogado.xyz/mantapp/'+data.image"
-                style="cursor: pointer" (click)="flags.play=true" [hidden]="flags.play">
-
-                <iframe *ngIf="flags.play" class=""
+                <iframe
                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
                 playsinline [src]="videoUrl" frameborder="0" allowfullscreen>
                 </iframe>    

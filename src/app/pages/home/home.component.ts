@@ -1,15 +1,23 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked, AfterViewInit } from '@angular/core';
 import { VideosService } from 'src/services/videos.service';
 import { NewsService } from 'src/services/news.service';
+import { LiveShowService } from 'src/services/live-show.service';
+import { NgImageSliderComponent } from 'ng-image-slider';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewInit {
+  @ViewChild('nav') slider: NgImageSliderComponent;
+
+  
+  liveShows: any;
   videos: any
   news: any
+  
+  isCarouselCanLoad: true
 
   chatTL: any
   chat=[
@@ -59,8 +67,13 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private videosSvc: VideosService,
-    private newsSvc: NewsService
+    private newsSvc: NewsService,
+    private liveShowSvc: LiveShowService
   ) { }
+  
+  ngAfterViewInit(): void {
+      this.isCarouselCanLoad=true
+  }
 
   ngOnInit(): void {
     this.chatTL = document.getElementById('chatTimeline')
@@ -73,6 +86,23 @@ export class HomeComponent implements OnInit {
       this.news = i
       this.news = this.news.splice(0,3)
     })
+
+    this.liveShowSvc.getLiveShows().toPromise().then(i=>{
+      this.liveShows = i
+      this.liveShows = this.liveShows.splice(0,3)
+      let imageObject=[{image: null, thumbImage: null}]
+
+      for(let item of this.liveShows){
+        imageObject.push({
+          image: 'https://developergadogado.xyz/mantapp/'+item.image,
+          thumbImage: 'https://developergadogado.xyz/mantapp/'+item.image,
+        })
+      }
+
+      console.log(imageObject)
+      this.slider.images=imageObject
+
+    })
   }
 
   scrollTL(){
@@ -81,6 +111,17 @@ export class HomeComponent implements OnInit {
 
   sendChat(){
     this.chat.push({type:"you", msg: this.msgVal})
+  }
+
+  next(){
+    this.slider.next()
+  }
+  prev(){
+    this.slider.prev()
+  }
+
+  redirect(e){
+    console.log(e)
   }
 
 }
