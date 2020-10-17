@@ -25,12 +25,16 @@
         .chat-content{
             padding: 6px;
             color: #637280;
-            font-size: 14px;
+            font-size: 11pt;
             margin: 4pt;
             margin-left: 12pt;
             margin-right: 12pt;
             word-break: break-word;  
             background-color: #FFFFFF;
+
+            .chat-time{
+                font-size: 8pt;
+            }
         }
     }
 }

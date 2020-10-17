@@ -55,6 +55,15 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     if(this.state.chatRoomSubscription) this.state.chatRoomSubscription.unsubscribe()
   }
   
+  getLoggedInEmail(){
+    try{
+      let res = this.authSvc.getUserProfile()
+      return res["data login"].email
+    }catch(e){
+      return null
+    }
+  }
+
   isLoggedIn(){
     return this.authSvc.isLoggedIn()
   }
@@ -89,6 +98,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       //this is a listener for chat room
       this.state.chatRoomSubscription = this.homeSvc.getChatSubs(this.state.recentLiveShowData.id).subscribe(res=>{
         this.chat = res
+        console.log(res)
         setTimeout(()=>{
           if(this.state.isAutoScrollChat) this.scrollTL()
         },500)

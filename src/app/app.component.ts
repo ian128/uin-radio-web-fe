@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
-import { Router, NavigationStart, NavigationEnd } from '@angular/router';
-import { trigger, state, style, transition, animate } from '@angular/animations';
-import { on } from 'process';
+import { Router, NavigationEnd } from '@angular/router';
+
+import localeId from '@angular/common/locales/id'; 
+import { registerLocaleData } from '@angular/common';
+registerLocaleData(localeId, 'id'); 
+
 
 @Component({
   selector: 'app-root',

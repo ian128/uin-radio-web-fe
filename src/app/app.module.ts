@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -32,6 +32,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
     AngularFireAuthModule
   ],
   providers: [
+    { provide: LOCALE_ID, useValue: "id-ID" }, 
     CookieService,
     LogoutGuardService,
     LoginGuardService,

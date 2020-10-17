@@ -24,7 +24,7 @@
         <div class="bg-light-gray chat-timeline" id="chatTimeline">
 
             <div *ngFor="let item of chat; let i = index">
-                <div *ngIf="item.type =='other'; else you">
+                <div *ngIf="item.email == getLoggedInEmail(); else other">
                     <div class="chat-bubble row">
                         <div class="col-auto pr-0 pt-1">
                             <div class="profile">
@@ -32,15 +32,25 @@
                             </div>
                         </div>
                         <div class="col chat-content">
-                            {{item.msg}}
+                            <div class="w-100 mb-1 border-bottom">
+                                {{item.msg}}
+                            </div>
+                            <div class="w-100 chat-time mt-1">
+                                {{item.time | date:'medium'}}
+                            </div>
                         </div>
                     </div>
                 </div>
             
-                <ng-template #you>
+                <ng-template #other>
                     <div class="chat-bubble row">
                         <div class="col chat-content">
-                            {{item.msg}}
+                            <div class="w-100 mb-1 border-bottom">
+                                {{item.msg}}
+                            </div>
+                            <div class="w-100 mt-1">
+                                {{item.time | date:'medium'}}
+                            </div>
                         </div>
                         <div class="col-auto pt-1 pl-0">
                             <div class="profile">
