@@ -143,11 +143,12 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   async sendChat(){    
     let auth = this.authSvc.getUserProfile()
-
+    console.log(auth)
     try{
       this.state.isSendingChat=true
       await this.homeSvc.sendChat(
         this.state.recentLiveShowData.id,
+        auth['data login'].id,
         auth['data login'].nama,
         auth['data login'].email,
         this.msgVal)

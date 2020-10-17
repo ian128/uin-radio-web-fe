@@ -20,10 +20,11 @@ export class HomepageService{
         return this.db.collection('live-chats').doc(liveShowID).collection('chat').valueChanges()
     }
 
-    async sendChat(liveShowID, senderName, senderEmail, senderMsg){
+    async sendChat(liveShowID, senderID, senderName, senderEmail, senderMsg){
         return await this.db.collection('live-chats').doc(liveShowID).collection('chat').doc(new Date().toISOString()).set({
             name: senderName,
             email: senderEmail,
+            id: senderID,
             msg: senderMsg,
             time: new Date().toISOString()
         })
