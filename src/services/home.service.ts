@@ -16,11 +16,12 @@ export class HomepageService{
     ){}
 
     getChatSubs(liveShowID){
+        this.db.collection('live-chats').doc(liveShowID).set({lastOpened: new Date().toISOString()})
         return this.db.collection('live-chats').doc(liveShowID).collection('chat').valueChanges()
     }
 
     async sendChat(liveShowID, senderName, senderEmail, senderMsg){
-        return await this.db.collection('live-chats').doc(liveShowID).collection('chat').doc(new Date().toString()).set({
+        return await this.db.collection('live-chats').doc(liveShowID).collection('chat').doc(new Date().toISOString()).set({
             name: senderName,
             email: senderEmail,
             msg: senderMsg,
