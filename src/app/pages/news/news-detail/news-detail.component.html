@@ -15,7 +15,7 @@
         <div class="row text-center mt-3">
             <div class="col">
                 <div class="news-photo">
-                    <img [src]="'https://developergadogado.xyz/mantapp/'+newsData.image">
+                    <img [src]="imgPrefix+newsData.image">
                 </div>
             </div>
         </div>
@@ -31,7 +31,7 @@
         <div class="row mb-3" *ngFor="let item of otherNews | slice:0:3">
             <div class="col-6">
                 <div class="news-photo-small">
-                    <img [src]="'https://developergadogado.xyz/mantapp/'+item.image">
+                    <img [src]="imgPrefix+item.image">
                 </div>
             </div>
             <div class="col-6">

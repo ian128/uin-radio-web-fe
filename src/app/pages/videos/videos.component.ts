@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { VideosService } from 'src/services/videos.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-videos',
@@ -8,6 +9,8 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./videos.component.scss']
 })
 export class VideosComponent implements OnInit {
+  imgPrefix = environment.host
+
   slice = 5
 
   listOfVideos: any[]

@@ -3,6 +3,7 @@ import { NewsService } from 'src/services/news.service';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { convertDate } from 'src/shared/utils';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-news-detail',
@@ -10,6 +11,8 @@ import { convertDate } from 'src/shared/utils';
   styleUrls: ['./news-detail.component.scss']
 })
 export class NewsDetailComponent implements OnInit {
+  imgPrefix = environment.host
+
   newsData:any ={}
   newsTxt=`<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Faucibus vitae aliquet nec ullamcorper sit amet risus nullam. Natoque penatibus et magnis dis parturient montes nascetur ridiculus. Vestibulum lorem sed risus ultricies tristique nulla. Lacinia at quis risus sed vulputate odio. Ac turpis egestas integer eget aliquet nibh praesent tristique magna. Nulla pellentesque dignissim enim sit amet. Quis varius quam quisque id diam. Sit amet porttitor eget dolor morbi non arcu risus. Nibh sed pulvinar proin gravida hendrerit. Fames ac turpis egestas maecenas pharetra convallis posuere. Arcu ac tortor dignissim convallis aenean et tortor at risus. Sed odio morbi quis commodo odio aenean sed adipiscing diam. Turpis egestas zsed tempus urna et pharetra pharetra massa massa. Id aliquet lectus proin nibh nisl condimentum id venenatis. Vel eros donec ac odio tempor orci dapibus.
   Tristique magna sit amet purus gravida.</p>

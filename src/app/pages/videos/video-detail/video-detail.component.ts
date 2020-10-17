@@ -4,6 +4,7 @@ import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { convertDate } from 'src/shared/utils';
 import { VideosService } from 'src/services/videos.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-video-detail',
@@ -11,6 +12,8 @@ import { VideosService } from 'src/services/videos.service';
   styleUrls: ['./video-detail.component.scss']
 })
 export class VideoDetailComponent implements OnInit {
+  imgPrefix = environment.host
+
   data:any ={}
   newsTxt=``
   videoUrl:  any= null

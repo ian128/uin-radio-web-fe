@@ -11,10 +11,9 @@ import { StorageService } from './secure-storage.service';
 export class AuthService{
     constructor(
         private http: HttpClient,
-        private cookiesSvc: CookieService,
         private secureStorageSvc: StorageService
     ){}
-
+    
     private convertToFormData(body){
         let fData = new FormData()
         for(let i in body){

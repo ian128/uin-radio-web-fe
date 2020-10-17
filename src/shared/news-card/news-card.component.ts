@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'news-card',
@@ -6,6 +7,8 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./news-card.component.scss']
 })
 export class NewsCardComponent implements OnInit {
+  imgPrefix = environment.host
+
   @Input('data') data: any
   constructor() { }
 

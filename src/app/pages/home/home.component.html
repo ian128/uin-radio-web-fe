@@ -1,14 +1,19 @@
 <div class="row mb-3">
     <div class="col-12 col-sm-12 col-md-9 col-lg-9 pb-3">
         <h5 class="capitalize bold">Live-<span class="text-primary">now</span></h5>
-        <div class="bg-light-gray">
-            <iframe class="live-now" [src]="recentLiveShow"
-            [ngClass]="{
-                'live-now': screenSizeMode>2,
-                'live-now-mobile': screenSizeMode <=2
-            }"
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-            playsinline frameborder="0" allowfullscreen>
+        <div class="bg-light-gray live"
+        [ngClass]="{
+            'live-now': screenSizeMode>2,
+            'live-now-mobile': screenSizeMode <=2
+        }">
+            <div class="media-overlay text-center p-5" *ngIf="!state.recentLiveShowData?.allowShow">
+                <h2 class="text-light">Live streaming starts in..</h2>
+                <h3 class="text-light">{{genTime()}}</h3>
+            </div>
+            <iframe [src]="state.recentLiveShow"
+                class="media"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                playsinline frameborder="0" allowfullscreen>
             </iframe>
         </div>
     </div>
@@ -46,16 +51,59 @@
                 </ng-template>
 
             </div>
-
+            
         </div>
         <div class="bg-light-gray p-2">
-            <textarea class="form-control border-0" rows="3"
-            [(ngModel)]="msgVal" placeholder="Ketik disini..." ></textarea>
-            <div class="bg-white text-right p-2">
-                <img src="/assets/pictures/icons/send.png" 
-                style="cursor: pointer" class="icon"
-                (click)="msgVal? sendChat(): null">
+            <div class="row mb-3 d-flex align-items-center bg-info py-2">
+                <div class="col text-right pr-0">
+                    <div class="bold text-light">
+                        Auto Scroll Chat
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <button 
+                    (click)="this.state.isAutoScrollChat = !this.state.isAutoScrollChat"
+                    [ngClass]="{
+                        'btn-primary': this.state.isAutoScrollChat,
+                        'btn-secondary': !this.state.isAutoScrollChat
+                    }"
+                    class="btn btn-primary btn-sm">
+                    {{
+                        this.state.isAutoScrollChat ? 'Aktif': 'Tidak Aktif'
+                    }}
+                </button>
+                </div>
             </div>
+            
+            <div class="row" *ngIf="!isLoggedIn(); else loggedIn">
+                <div class="col">
+                    Login to join this chat
+                 </div>
+            </div>
+            <ng-template #loggedIn>
+                <div class="row" *ngIf="!state.recentLiveShowData?.allowShow">
+                    <div class="col">
+                        Please wait for live streaming for start
+                    </div>
+                </div>
+                <div class="row" *ngIf="state.recentLiveShowData?.allowShow">
+                    <div class="col">
+                        <textarea class="form-control border-0" rows="3"
+                        [(ngModel)]="msgVal" placeholder="Ketik disini..." ></textarea>
+                        <div class="bg-white text-right p-2">
+                            <img src="/assets/pictures/icons/send.png" 
+                            *ngIf="!state.isSendingChat"
+                                style="cursor: pointer" class="icon"
+                                (click)="sendChat()">
+                            <div class="spinner-border text-primary spinner-border-sm" role="status"
+                            *ngIf="state.isSendingChat">
+                                <span class="sr-only">Loading...</span>
+                              </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+          
         </div>
     </div>
 </div>
@@ -73,11 +121,11 @@
                 [showArrow]="false"
                 (imageClick)="redirect($event)"></ng-image-slider>
 
-                <a class="carousel-control-prev" style="z-index: 999 !important;" (click)="prev()">
+                <a class="carousel-control-prev" style="z-index: 999 !important;" (click)="prevCarousel()">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="sr-only">Previous</span>
                 </a>
-                <a class="carousel-control-next" style="z-index: 999 !important;" (click)="next()">
+                <a class="carousel-control-next" style="z-index: 999 !important;" (click)="nextCarousel()">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="sr-only">Next</span>
                 </a>

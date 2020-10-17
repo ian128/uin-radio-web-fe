@@ -11,7 +11,11 @@ import { TokenInterceptor } from 'src/interceptors/httpInterceptor';
 import { CookieService } from 'ngx-cookie-service';
 import { LoginGuardService } from 'src/guards/login-guard.service';
 import { LogoutGuardService } from 'src/guards/logout-guard.service';
-import { SafePipe } from 'src/pipes/sanitize-url.pipe';
+import { environment } from 'src/environments/environment';
+
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 @NgModule({
   declarations: [
@@ -22,7 +26,10 @@ import { SafePipe } from 'src/pipes/sanitize-url.pipe';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    SharedModule
+    SharedModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule.enablePersistence(), // firestore
+    AngularFireAuthModule
   ],
   providers: [
     CookieService,

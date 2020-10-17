@@ -1,71 +1,42 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked, AfterViewInit, OnDestroy } from '@angular/core';
 import { VideosService } from 'src/services/videos.service';
 import { NewsService } from 'src/services/news.service';
 import { LiveShowService } from 'src/services/live-show.service';
 import { NgImageSliderComponent } from 'ng-image-slider';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ScreenService } from 'src/services/screen.service';
+import { environment } from 'src/environments/environment';
+import { AuthService } from 'src/services/auth.service';
+import { HomepageService } from 'src/services/home.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit, AfterViewInit {
+export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('nav') slider: NgImageSliderComponent;
 
-  recentLiveShow: any
+  state={
+    recentLiveShowData: null,
+
+    recentLiveShow: null,
+    isAutoScrollChat: true,
+
+    chatRoomSubscription: null,
+    
+    isSendingChat: false
+  }
 
   liveShows: any
   videos: any
   news: any
 
   screenSizeMode: any
-  
-  isCarouselCanLoad: true
 
   chatTL: any
   chat=[
-    {
-      type: 'other',
-      msg: '🍞'
-    },
-    {
-      type: 'you',
-      msg: 'ok'
-    },
-    {
-      type: 'other',
-      msg: '🍞'
-    },
-    {
-      type: 'you',
-      msg: 'ok'
-    },
-    {
-      type: 'other',
-      msg: '🍞'
-    },
-    {
-      type: 'you',
-      msg: 'ok'
-    },
-    {
-      type: 'other',
-      msg: '🍞'
-    },
-    {
-      type: 'you',
-      msg: 'ok'
-    },
-     {
-      type: 'other',
-      msg: '🍞'
-    },
-    {
-      type: 'you',
-      msg: 'ok'
-    },
+    
   ]
 
   msgVal: any
@@ -75,15 +46,24 @@ export class HomeComponent implements OnInit, AfterViewInit {
     private newsSvc: NewsService,
     private liveShowSvc: LiveShowService,
     private sanitizer: DomSanitizer,
-    private screenSvc: ScreenService
+    private screenSvc: ScreenService,
+    private authSvc: AuthService,
+    private homeSvc: HomepageService
   ) { }
   
+  ngOnDestroy(): void {
+    if(this.state.chatRoomSubscription) this.state.chatRoomSubscription.unsubscribe()
+  }
+  
+  isLoggedIn(){
+    return this.authSvc.isLoggedIn()
+  }
+
   ngAfterViewInit(): void {
-      this.isCarouselCanLoad=true
+    this.chatTL = document.getElementById('chatTimeline')
   }
 
   ngOnInit(): void {
-    this.chatTL = document.getElementById('chatTimeline')
 
     this.screenSvc.prefix.subscribe(r=>{
       this.screenSizeMode = r
@@ -103,20 +83,47 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.liveShowSvc.getLiveShows().toPromise().then(i=>{
       let ar:any=i
       this.liveShows = ar.reverse()
-      this.recentLiveShow = this.sanitizer.bypassSecurityTrustResourceUrl(ar[0].videolink)
+      this.state.recentLiveShow = this.sanitizer.bypassSecurityTrustResourceUrl(ar[0].videolink)
+      this.state.recentLiveShowData=ar[0]
+
+      //this is a listener for chat room
+      this.state.chatRoomSubscription = this.homeSvc.getChatSubs(this.state.recentLiveShowData.id).subscribe(res=>{
+        this.chat = res
+        setTimeout(()=>{
+          if(this.state.isAutoScrollChat) this.scrollTL()
+        },500)
+      })
+
+      this.state.recentLiveShowData.counterFunc = setInterval(()=>{
+        try{
+          let now = new Date().getTime()
+          let next = new Date(this.state.recentLiveShowData.datetime).getTime()
+          let diff = Math.floor( (next - now) / 1000);
+
+          this.state.recentLiveShowData.diff = diff
+
+          if(diff < 0){
+            this.state.recentLiveShowData.allowShow = true
+            clearTimeout(this.state.recentLiveShowData.counterFunc)
+          }
+        }catch(e){
+          
+        }
+      },1)
+
       this.liveShows = this.liveShows.splice(1,4)
       let imageObject=[]
       imageObject.push({image: null, thumbImage: null})
+      
       for(let item of this.liveShows){
         imageObject.push({
           video: item.videolink,
-          posterImage: 'https://developergadogado.xyz/mantapp/'+item.image,
+          posterImage: environment.host+item.image,
         })
       }
-
-      console.log(imageObject)
       this.slider.images=imageObject
 
+      this.scrollTL()
     })
   }
 
@@ -124,15 +131,30 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.chatTL.scrollTop = this.chatTL.scrollHeight;
   }
 
-  sendChat(){
-    this.chat.push({type:"you", msg: this.msgVal})
+  async sendChat(){    
+    let auth = this.authSvc.getUserProfile()
+
+    try{
+      this.state.isSendingChat=true
+      await this.homeSvc.sendChat(
+        this.state.recentLiveShowData.id,
+        auth['data login'].nama,
+        auth['data login'].email,
+        this.msgVal)
+      this.msgVal = ''
+    }catch(e){
+
+    }finally{
+      this.state.isSendingChat=false
+    }
+
   }
 
-  next(){
+  nextCarousel(){
     this.slider.autoSlide=false
     this.slider.next()
   }
-  prev(){
+  prevCarousel(){
     this.slider.autoSlide=false
     this.slider.prev()
   }
@@ -142,4 +164,16 @@ export class HomeComponent implements OnInit, AfterViewInit {
     console.log(e)
   }
 
+  genTime(){
+    try{
+      let time = this.state.recentLiveShowData.diff
+      
+      let hh = Math.floor(time/3600)
+      let mm = Math.floor( (time - hh*3600) /60)
+      let ss = Math.floor( (time - hh*3600 - mm*60))
+      return hh.toString().padStart(2,'0')+':'+mm.toString().padStart(2,'0')+':'+ss.toString().padStart(2,'0')
+    }catch(e){
+      return ''
+    }
+  }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { NewsService } from 'src/services/news.service';
 import { convertDate } from 'src/shared/utils';
 
@@ -8,6 +9,8 @@ import { convertDate } from 'src/shared/utils';
   styleUrls: ['./news.component.scss']
 })
 export class NewsComponent implements OnInit {
+  imgPrefix = environment.host
+
   listOfNews: any[]
   slice = 5
 

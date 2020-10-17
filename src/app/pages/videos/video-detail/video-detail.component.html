@@ -32,7 +32,7 @@
         <div class="row mb-3" *ngFor="let item of otherVideos | slice:0:3">
             <div class="col-6">
                 <div class="news-photo-small">
-                    <img [src]="'https://developergadogado.xyz/mantapp/'+item.image">
+                    <img [src]="imgPrefix+item.image">
                 </div>
             </div>
             <div class="col-6">
