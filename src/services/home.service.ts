@@ -16,7 +16,6 @@ export class HomepageService{
     ){}
 
     getChatSubs(liveShowID){
-        this.db.collection('live-chats').doc(liveShowID).set({lastOpened: new Date().toISOString()})
         return this.db.collection('live-chats').doc(liveShowID).collection('chat').valueChanges()
     }
 

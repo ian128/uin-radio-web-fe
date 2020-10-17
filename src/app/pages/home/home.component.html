@@ -6,7 +6,7 @@
             'live-now': screenSizeMode>2,
             'live-now-mobile': screenSizeMode <=2
         }">
-            <div class="media-overlay text-center p-5" *ngIf="!state.recentLiveShowData?.allowShow">
+            <div class="media-overlay text-center p-5 " *ngIf="!state.recentLiveShowData?.allowShow">
                 <h2 class="text-light">Live streaming starts in..</h2>
                 <h3 class="text-light">{{genTime()}}</h3>
             </div>
