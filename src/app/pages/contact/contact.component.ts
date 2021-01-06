@@ -1,13 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { GenericService } from 'src/services/generic.service';
+import * as SolidIcon from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss']
 })
+
 export class ContactComponent implements OnInit {
+  faEmail = SolidIcon.faEnvelope
+  faAddress = SolidIcon.faBuilding
+  faPhone = SolidIcon.faPhone
+
   flags={
     isProcessing: false
   }
