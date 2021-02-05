@@ -95,6 +95,13 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       this.state.recentLiveShow = this.sanitizer.bypassSecurityTrustResourceUrl(ar[0].videolink)
       this.state.recentLiveShowData=ar[0]
 
+      try{
+        this.state.recentLiveShowData.image = environment.host+this.state.recentLiveShowData.image 
+      }catch(e){
+        console.warn("Can't fetch picture!")
+      }
+
+      console.log(this.state.recentLiveShowData)
       //this is a listener for chat room
       this.state.chatRoomSubscription = this.homeSvc.getChatSubs(this.state.recentLiveShowData.id).subscribe(res=>{
         this.chat = res
@@ -119,7 +126,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
         }catch(e){
           
         }
-      },1)
+      },100)
 
       this.liveShows = this.liveShows.splice(1,4)
       let imageObject=[]
@@ -182,6 +189,9 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       let hh = Math.floor(time/3600)
       let mm = Math.floor( (time - hh*3600) /60)
       let ss = Math.floor( (time - hh*3600 - mm*60))
+      if(isNaN(hh) || isNaN(mm) || isNaN(ss)){
+        return "Calculating..."
+      }else
       return hh.toString().padStart(2,'0')+':'+mm.toString().padStart(2,'0')+':'+ss.toString().padStart(2,'0')
     }catch(e){
       return ''

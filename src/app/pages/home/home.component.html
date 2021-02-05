@@ -6,10 +6,15 @@
             'live-now': screenSizeMode>2,
             'live-now-mobile': screenSizeMode <=2
         }">
-            <div class="media-overlay text-center p-5 " *ngIf="!state.recentLiveShowData?.allowShow">
-                <h2 class="text-light">Live streaming starts in..</h2>
-                <h3 class="text-light">{{genTime()}}</h3>
+            <div class="thumbnail-overlay"  *ngIf="!state.recentLiveShowData?.allowShow">
+                <img [src]="state.recentLiveShowData?.image">
             </div>
+
+            <div class="media-overlay text-center p-5 d-flex flex-column" *ngIf="!state.recentLiveShowData?.allowShow">
+                <h3 class="text-light mt-auto">Live streaming starts in..</h3>
+                <h4 class="text-light mb-auto">{{genTime()}}</h4>
+            </div>
+
             <iframe [src]="state.recentLiveShow"
                 class="media"
                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
@@ -149,20 +154,6 @@
                 class="p-0 col-12 col-sm-4 col-lg-4 col-xl-4"></videos-card>
             </div>
             
-        </div>
-        <div class="w-100 border-top pt-2 pb-4">
-            <h5 class="capitalize bold">Top <span class="text-primary">Show</span></h5>
-            <div class="row">
-                <div class="col-12 col-sm-12 col-lg-4 col-xl-4">
-                    <h6 class="title">1.Lorem Ipsum Dolor Sit Amet</h6>
-                </div>
-                <div class="col-12 col-sm-12 col-lg-4 col-xl-4">
-                    <h6 class="title">2.Lorem Ipsum Dolor Sit Amet</h6>
-                </div>
-                <div class="col-12 col-sm-12 col-lg-4 col-xl-4">
-                    <h6 class="title">3.Lorem Ipsum Dolor Sit Amet</h6>
-                </div>
-            </div>
         </div>
     </div>
     <div class="
