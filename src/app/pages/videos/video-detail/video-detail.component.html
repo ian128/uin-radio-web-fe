@@ -29,6 +29,11 @@
     <div class="
     col-sm-12 col-md-12 col-lg-4 col-xl-4 border-top">
         <h5 class="capitalize bold mt-2 mb-3">Videos archive</h5>
+        <div class="row mb-3" *ngIf="otherVideos.length == 0">
+            <div class="col-12">
+                There are no video(s)
+            </div>
+        </div>
         <div class="row mb-3" *ngFor="let item of otherVideos | slice:0:3">
             <div class="col-6">
                 <div class="news-photo-small">

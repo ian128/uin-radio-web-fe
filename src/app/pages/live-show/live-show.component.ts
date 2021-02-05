@@ -27,13 +27,15 @@ export class LiveShowComponent implements OnInit {
     this.flags.isLoading=true
     try{
       let res: any= await this.liveShowSvc.getLiveShows().toPromise()
+      res.pop()
+      //pop the latest live show, it's shown in homepage instead
       this.listOfLiveShows = res.reverse()
       this.listOfLiveShows.forEach(i=>{
         i.videolink = this.sanitizer.bypassSecurityTrustResourceUrl(i.videolink)
       })
       console.log(this.listOfLiveShows)
     }catch(e){
-
+      console.warn(e)
     }finally{
       this.flags.isLoading=false
     }
